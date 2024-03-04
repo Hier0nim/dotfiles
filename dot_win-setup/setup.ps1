@@ -1,21 +1,25 @@
-# install latest version of winget
-Add-AppxPackage https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle
-
 # Winget installations
 winget install --id=Git.Git --accept-package-agreements --accept-source-agreements
 winget install --id=GitHub.GitHubDesktop --accept-package-agreements --accept-source-agreements
 winget install --id=JetBrains.Rider --accept-package-agreements --accept-source-agreements
-winget install --id=Vifm.Vifm --accept-package-agreements --accept-source-agreements
 winget install --id=Neovim.Neovim --accept-package-agreements --accept-source-agreements
 winget install --id=OpenJS.NodeJS --accept-package-agreements --accept-source-agreements
 winget install --id=twpayne.chezmoi --accept-package-agreements --accept-source-agreements
 winget install --id=Chocolatey.Chocolatey --accept-package-agreements --accept-source-agreements
 winget install --id=glzr-io.glazewm --accept-package-agreements --accept-source-agreements
+winget install --id=DEVCOM.JetBrainsMonoNerdFont --accept-package-agreements --accept-source-agreements
+winget install --id=Microsoft.Powertoys --accept-package-agreements --accept-source-agreements
+winget install --id=JanDeDobbeleer.OhMyPosh --accept-package-agreements --accept-source-agreements
+winget install --id=Microsoft.Powershell --accept-package-agreements --accept-source-agreements
+winget install --id=AutoHotkey.AutoHotkey --accept-package-agreements --accept-source-agreements
+winget upgrade --all
 
 # Chocolatey installations
 choco install mingw -y
 choco install make -y
 choco install unzip -y
+choco install vifm -y
+choco install throttlestop -y
 
 # Initialize dotfiles manager
 chezmoi init --apply Hier0nim
