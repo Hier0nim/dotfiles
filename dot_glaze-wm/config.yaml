@@ -1,6 +1,6 @@
 general:
   # Whether to automatically focus windows underneath the cursor.
-  focus_follows_cursor: false
+  focus_follows_cursor: true
 
   # Whether to jump the cursor between windows focused by the WM.
   cursor_follow_focus: false
