@@ -5,4 +5,13 @@ edit:
     watch: true
 cd:
     command: pwsh
-    args: "-NoLogo"
+    args:
+        - '-NoLogo'
+diff:
+merge:
+    command: nvim
+    args:
+        - '-d'
+        - '{{ .Destination }}'
+        - '{{ .Source }}'
+        - '{{ .Target }}'
