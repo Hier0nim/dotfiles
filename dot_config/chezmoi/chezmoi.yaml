@@ -1,0 +1,8 @@
+git:
+    autoPush: true
+edit:
+    command: nvim
+    watch: true
+cd:
+    command: pwsh
+    args: "-NoLogo"
