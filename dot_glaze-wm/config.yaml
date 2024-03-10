@@ -112,56 +112,56 @@ bar:
 workspaces:
   - name: "1"
     display_name: "main"
-    bind_to_monitor: 2
+    bind_to_monitor: 1
     keep_alive: true
   - name: "2"
-    bind_to_monitor: 2
+    bind_to_monitor: 1
   - name: "3"
-    bind_to_monitor: 2
+    bind_to_monitor: 1
   - name: "4"
     bind_to_monitor: 1
   - name: "5"
-    bind_to_monitor: 1
+    bind_to_monitor: 2
   - name: "6"
-    bind_to_monitor: 1
+    bind_to_monitor: 2
   - name: "7"
-    display_name: "teams"
-    bind_to_monitor: 1
+    display_name: "chat"
+    bind_to_monitor: 2
   - name: "8"
     display_name: "mail"
-    bind_to_monitor: 1
-    keep_alive: true
+    bind_to_monitor: 2
   - name: "9"
     display_name: "🎶"
-    bind_to_monitor: 1
+    bind_to_monitor: 2
 
 window_rules:
   # Task Manager requires admin privileges to manage and should be ignored unless runnin:g
   # the WM as admin.
   - command: "ignore"
-    match_process_name: "/Taskmgr|ScreenClippingHost|carlo/"
+    match_process_name: "/ScreenClippingHost|carlo/"
 
-  # Launches system dialogs as floating by default (eg. File Explorer save/open dialog).
   - command: "set floating"
     match_class_name: "#32770"
-
-  - command: "set floating"
     match_process_name: "/BuildProtokoll"
-
-  - command: "set floating"
     match_title: "/Rename|Run/Debug Configurations|Settings|Harpoon/"
+
+  - command: "set tiling"
+    match_title: "Settings"
 
   - command: "move to workspace 1"
     match_process_name: "JetBrains Rider"
 
   - command: "move to workspace 7"
-    match_process_name: "ms-teams"
+    match_process_name: "/ms-teams|Discord/"
 
   - command: "move to workspace 8"
     match_process_name: "OUTLOOK"
 
   - command: "move to workspace 9"
     match_process_name: "Spotify"
+
+  - command: "resize borders 0px -7px -7px -7px"
+    match_process_name: "steam"
 
 binding_modes:
   - name: "resize"
