@@ -1,12 +1,12 @@
 {
   "Hotkey": "Alt \u002B Space",
-  "OpenResultModifiers": "Alt",
+  "OpenResultModifiers": "Ctrl",
   "ColorScheme": "System",
   "ShowOpenResultHotkey": true,
   "WindowSize": 580,
   "PreviewHotkey": "F1",
   "Language": "en",
-  "Theme": "Sublime",
+  "Theme": "Win11System",
   "UseDropShadowEffect": false,
   "QueryBoxFont": "Microsoft Sans Serif",
   "QueryBoxFontStyle": null,
@@ -133,7 +133,7 @@
     "UserName": null,
     "Password": null
   },
-  "LastQueryMode": "Preserved",
+  "LastQueryMode": "Empty",
   "AnimationSpeed": "Medium",
   "CustomAnimationLength": 360,
   "PluginSettings": {
