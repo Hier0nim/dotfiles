@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+properties:
+  configurationVersion: "0.2.0"
+  resources:
+    - resource: "GitHub.GitHubDesktop"
+      directives:
+        description: "Installs GitHub Desktop"
+    - resource: "Git.Git"
+      directives:
+        description: "Installs Git"
+    - resource: "JetBrains.Rider"
+      directives:
+        description: "Installs JetBrains Rider"
+    - resource: "Microsoft.VisualStudio.2022.BuildTools"
+      directives:
+        description: "Installs Visual Studio Build Tools 2022"
+    - resource: "{6F320B93-EE3C-4826-85E0-ADF79F8D4C61}"
+      directives:
+        description: "Installs Microsoft Visual Studio Installer"
+    - resource: "OpenJS.NodeJS"
+      directives:
+        description: "Installs Node.js"
+    - resource: "Microsoft.DotNet.SDK.8"
+      directives:
+        description: "Installs Microsoft .NET SDK 8.0"

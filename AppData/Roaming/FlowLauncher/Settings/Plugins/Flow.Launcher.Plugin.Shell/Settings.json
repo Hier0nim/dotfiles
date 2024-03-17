@@ -7,6 +7,9 @@
   "ShowOnlyMostUsedCMDs": false,
   "ShowOnlyMostUsedCMDsNumber": 5,
   "CommandHistory": {
-    "nvim": 1
+    "nvim": 3,
+    "vifm": 4,
+    "clang": 1,
+    "winget uninstall llvm": 1
   }
 }

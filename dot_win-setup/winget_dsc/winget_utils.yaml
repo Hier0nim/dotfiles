@@ -1,0 +1,46 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+properties:
+  configurationVersion: "0.2.0"
+  resources:
+    - resource: "Neovim.Neovim"
+      directives:
+        description: "Installs Neovim"
+    - resource: "AutoHotkey.AutoHotkey"
+      directives:
+        description: "Installs AutoHotkey"
+    - resource: "Discord.Discord"
+      directives:
+        description: "Installs Discord"
+    - resource: "voidtools.Everything"
+      directives:
+        description: "Installs Everything"
+    - resource: "Flow-Launcher.Flow-Launcher"
+      directives:
+        description: "Installs Flow Launcher"
+    - resource: "Google.Chrome"
+      directives:
+        description: "Installs Google Chrome"
+    - resource: "JanDeDobbeleer.OhMyPosh"
+      directives:
+        description: "Installs Oh My Posh"
+    - resource: "Spotify.Spotify"
+      directives:
+        description: "Installs Spotify Music"
+    - resource: "SumatraPDF.SumatraPDF"
+      directives:
+        description: "Installs SumatraPDF"
+    - resource: "glzr-io.glazewm"
+      directives:
+        description: "Installs GlazeWM"
+    - resource: "twpayne.chezmoi"
+      directives:
+        description: "Installs chezmoi"
+    - resource: "Chocolatey.Chocolatey"
+      directives:
+        description: "Installs Chocolatey (Install Only)"
+    - resource: "DEVCOM.JetBrainsMonoNerdFont"
+      directives:
+        description: "Installs JetBrainsMono Nerd Font"
+    - resource: "Microsoft.PowerShell"
+      directives:
+        description: "Installs PowerShell 7-x64"

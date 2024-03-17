@@ -2,7 +2,7 @@
   "OpenInNewBrowserWindow": true,
   "BrowserPath": null,
   "LoadChromeBookmark": true,
-  "LoadFirefoxBookmark": true,
-  "LoadEdgeBookmark": true,
+  "LoadFirefoxBookmark": false,
+  "LoadEdgeBookmark": false,
   "CustomChromiumBrowsers": []
 }

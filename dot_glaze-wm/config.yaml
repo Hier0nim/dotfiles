@@ -86,7 +86,26 @@ bar:
       label_vertical: "<attr ff='Segoe Fluent Icons' fg='#a6e3a1'></attr>"
       background: transparent
       foreground: *text
+      margin: 0 8 
+
+    - type: "battery"
+      foreground: *text
       margin: 0 8
+      label_draining   : "<attr ff='Segoe Fluent Icons' fg='#fab387'> </attr>{battery_level}%"
+      label_power_saver: "<attr ff='Segoe Fluent Icons' fg='#fab387'> </attr>{battery_level}%"
+      label_charging   : "<attr ff='Segoe Fluent Icons' fg='#fab387'> </attr>{battery_level}%"
+
+    - type: "network"
+      foreground: *text
+      margin: 0 8
+      label_no_internet: "<attr ff='Segoe Fluent Icons' fg='#fab387'> </attr>Dsc"
+      label_ethernet: "<attr ff='Segoe Fluent Icons' fg='#fab387'> </attr>Eth"
+      label_wifi_strength0: "<attr ff='Segoe Fluent Icons' fg='#fab387'> </attr>0%"
+      label_wifi_strength25: "<attr ff='Segoe Fluent Icons' fg='#fab387'> </attr>25%"
+      label_wifi_strength50: "<attr ff='Segoe Fluent Icons' fg='#fab387'> </attr>50%"
+      label_wifi_strength75: "<attr ff='Segoe Fluent Icons' fg='#fab387'> </attr>75%"
+      label_wifi_strength100: "<attr ff='Segoe Fluent Icons' fg='#fab387'> </attr>100%"
+      border_color: *peach
 
     - type: "volume"
       foreground: *text
@@ -107,7 +126,7 @@ bar:
       foreground: *text
       padding: 0 8
       label: "<attr ff='Segoe Fluent Icons' fg='#89b4fa'> </attr>{formatted_time}"
-      time_formatting: "hh:mm tt"
+      time_formatting: "HH:mm"
 
 workspaces:
   - name: "1"
@@ -182,23 +201,23 @@ binding_modes:
 keybindings:
   # Shift focus in a given direction.
   - command: "focus left"
-    bindings: ["Alt+H", "Alt+Left"]
+    bindings: ["Alt+H"]
   - command: "focus right"
-    bindings: ["Alt+L", "Alt+Right"]
+    bindings: ["Alt+L"]
   - command: "focus up"
-    bindings: ["Alt+K", "Alt+Up"]
+    bindings: ["Alt+K"]
   - command: "focus down"
-    bindings: ["Alt+J", "Alt+Down"]
+    bindings: ["Alt+J"]
 
   # Move focused window in a given direction.
   - command: "move left"
-    bindings: ["Alt+Shift+H", "Alt+Shift+Left"]
+    bindings: ["Alt+Shift+H"]
   - command: "move right"
-    bindings: ["Alt+Shift+L", "Alt+Shift+Right"]
+    bindings: ["Alt+Shift+L"]
   - command: "move up"
-    bindings: ["Alt+Shift+K", "Alt+Shift+Up"]
+    bindings: ["Alt+Shift+K"]
   - command: "move down"
-    bindings: ["Alt+Shift+J", "Alt+Shift+Down"]
+    bindings: ["Alt+Shift+J"]
 
   # Resize focused window by a percentage or pixel amount.
   - command: "resize width -2%"
