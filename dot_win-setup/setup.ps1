@@ -33,7 +33,6 @@ function Register-StartupTask {
     $Principal = New-ScheduledTaskPrincipal -UserId "$env:USERDOMAIN\$env:USERNAME" -LogonType Interactive -RunLevel Highest
 
     Register-ScheduledTask -Action $Action -Trigger $Trigger -TaskName $TaskName -Description $Description -Principal $Principal |
-        Set-ScheduledTask -Argument "-ExecutionPolicy Bypass" |
         Get-ScheduledTask -TaskName $TaskName |
         ForEach-Object {
             $_.Settings.DisallowStartIfOnBatteries = $false
@@ -47,3 +46,4 @@ function Register-StartupTask {
 Register-StartupTask "ButteryTaskBar" "Runs Buttery TaskBar at user login" "$env:USERPROFILE\.win-setup\ButteryTaskBar\buttery-taskbar.exe"
 Register-StartupTask "GlazeWM" "Runs GlazeWM at user login" "$env:USERPROFILE\AppData\Local\Microsoft\WinGet\Packages\glzr-io.glazewm_Microsoft.Winget.Source_8wekyb3d8bbwe\glazewm.exe"
 Register-StartupTask "Throttlestop" "Runs ThrottleStop at user login" "C:\ProgramData\chocolatey\lib\throttlestop\tools\throttlestop\ThrottleStop.exe"
+Register-StartupTask "FlowLauncher" "Runs FlowLauncher at user login" "$env:USERPROFILE\AppData\Local\FlowLauncher\Flow.Launcher.exe"

@@ -1,25 +1,53 @@
 # yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
 properties:
-  configurationVersion: "0.2.0"
+  configurationVersion: 0.2.0
   resources:
-    - resource: "GitHub.GitHubDesktop"
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
       directives:
-        description: "Installs GitHub Desktop"
-    - resource: "Git.Git"
+        description: Installs GitHub Desktop
+        allowPrerelease: true
+      settings:
+        id: GitHub.GitHubDesktop
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
       directives:
-        description: "Installs Git"
-    - resource: "JetBrains.Rider"
+        description: Installs Git
+        allowPrerelease: true
+      settings:
+        id: Git.Git
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
       directives:
-        description: "Installs JetBrains Rider"
-    - resource: "Microsoft.VisualStudio.2022.BuildTools"
+        description: Installs GitHub Cli
+        allowPrerelease: true
+      settings:
+        id: GitHub.cli
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
       directives:
-        description: "Installs Visual Studio Build Tools 2022"
-    - resource: "{6F320B93-EE3C-4826-85E0-ADF79F8D4C61}"
+        description: Installs JetBrains Rider
+        allowPrerelease: true
+      settings:
+        id: JetBrains.Rider
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
       directives:
-        description: "Installs Microsoft Visual Studio Installer"
-    - resource: "OpenJS.NodeJS"
+        description: Installs Visual Studio Build Tools 2022
+        allowPrerelease: true
+      settings:
+        id: Microsoft.VisualStudio.2022.BuildTools
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
       directives:
-        description: "Installs Node.js"
-    - resource: "Microsoft.DotNet.SDK.8"
+        description: Installs Node.js
+        allowPrerelease: true
+      settings:
+        id: OpenJS.NodeJS
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
       directives:
-        description: "Installs Microsoft .NET SDK 8.0"
+        description: Installs Microsoft .NET SDK 8.0
+        allowPrerelease: true
+      settings:
+        id: Microsoft.DotNet.SDK.8
+        source: winget

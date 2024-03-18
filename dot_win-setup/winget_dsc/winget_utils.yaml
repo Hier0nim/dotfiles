@@ -2,45 +2,101 @@
 properties:
   configurationVersion: "0.2.0"
   resources:
-    - resource: "Neovim.Neovim"
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
       directives:
         description: "Installs Neovim"
-    - resource: "AutoHotkey.AutoHotkey"
+        allowPrerelease: true
+      settings:
+        id: "Neovim.Neovim"
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
       directives:
         description: "Installs AutoHotkey"
-    - resource: "Discord.Discord"
+        allowPrerelease: true
+      settings:
+        id: "AutoHotkey.AutoHotkey"
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
       directives:
         description: "Installs Discord"
-    - resource: "voidtools.Everything"
+        allowPrerelease: true
+      settings:
+        id: "Discord.Discord"
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
       directives:
         description: "Installs Everything"
-    - resource: "Flow-Launcher.Flow-Launcher"
+        allowPrerelease: true
+      settings:
+        id: "voidtools.Everything"
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
       directives:
         description: "Installs Flow Launcher"
-    - resource: "Google.Chrome"
+        allowPrerelease: true
+      settings:
+        id: "Flow-Launcher.Flow-Launcher"
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
       directives:
         description: "Installs Google Chrome"
-    - resource: "JanDeDobbeleer.OhMyPosh"
+        allowPrerelease: true
+      settings:
+        id: "Google.Chrome"
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
       directives:
         description: "Installs Oh My Posh"
-    - resource: "Spotify.Spotify"
+        allowPrerelease: true
+      settings:
+        id: "JanDeDobbeleer.OhMyPosh"
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
       directives:
         description: "Installs Spotify Music"
-    - resource: "SumatraPDF.SumatraPDF"
+        allowPrerelease: true
+      settings:
+        id: "Spotify.Spotify"
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
       directives:
         description: "Installs SumatraPDF"
-    - resource: "glzr-io.glazewm"
+        allowPrerelease: true
+      settings:
+        id: "SumatraPDF.SumatraPDF"
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
       directives:
         description: "Installs GlazeWM"
-    - resource: "twpayne.chezmoi"
+        allowPrerelease: true
+      settings:
+        id: "glzr-io.glazewm"
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
       directives:
         description: "Installs chezmoi"
-    - resource: "Chocolatey.Chocolatey"
+        allowPrerelease: true
+      settings:
+        id: "twpayne.chezmoi"
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
       directives:
         description: "Installs Chocolatey (Install Only)"
-    - resource: "DEVCOM.JetBrainsMonoNerdFont"
+        allowPrerelease: true
+      settings:
+        id: "Chocolatey.Chocolatey"
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
       directives:
         description: "Installs JetBrainsMono Nerd Font"
-    - resource: "Microsoft.PowerShell"
+        allowPrerelease: true
+      settings:
+        id: "DEVCOM.JetBrainsMonoNerdFont"
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
       directives:
         description: "Installs PowerShell 7-x64"
+        allowPrerelease: true
+      settings:
+        id: "Microsoft.PowerShell"
+        source: winget
