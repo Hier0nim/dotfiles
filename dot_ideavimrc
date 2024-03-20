@@ -7,36 +7,18 @@ let mapleader = " "
 nnoremap <SPACE> <Nop>
 
 " Options for better editing experience
-set clipboard=unnamedplus,unnamed,ideaput
-set fileencoding="utf-8"
-set hlsearch
-set ignorecase
-set smartcase
-set smartindent
-set splitbelow
-set splitright
-set noswapfile
-set undofile
-set undolevels=10000
-set undoreload=10000
-set expandtab
-set shiftwidth=2
-set tabstop=2
-set softtabstop=2
-set cursorline
-set number
-set relativenumber
-set wrap
-set autoindent
-set nolinebreak
-set scrolloff=8
-set sidescrolloff=8
-set showmode
-set clipboard+=unnamed
-set clipboard+=ideaput
-set incsearch
-set sneak
-set quickscope
+set clipboard += unnamedplus                " integrate with system clipboard
+set hlsearch                                " highlight search occurrences
+set ignorecase                              " ignore case in search patterns
+set smartcase                               " no ignore case when pattern is uppercase
+set incsearch                               " show search results while typing
+
+set undolevels=10000                        " maximum number of changes that can be undone
+set number                                  " print the line number in front of each line
+set relativenumber                          " how the line number relative to the line with the cursor
+set scrolloff=8                             " minimum number of columns to scroll horizontally
+set sidescrolloff=8                         " min. number of columns to left and right of cursor
+set showmode                                " message on the status line to show current mode
 
 " Recommended IdeaVim settings
 set ideajoin
@@ -46,8 +28,9 @@ set ideamarks
 " Plugin settings
 set surround
 set NERDTree
-set commentary
 set highlightedyank
+set sneak
+set quickscope
 
 " ========================================
 " Key Mappings
@@ -68,7 +51,6 @@ map <leader>tp <action>(PinActiveEditorTab)
 map <leader>tc <action>(CloseAllUnpinnedEditors)
 map <leader>tca <action>(CloseAllEditors)
 
-
 " Window navigation
 nmap <Leader>v :vsplit<CR>
 nmap <Leader>h :split<CR>
@@ -79,8 +61,6 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 " Code navigation
-nmap gb <Action>(Back)
-nmap gf <Action>(Forward)
 nmap gd <Action>(GotoDeclaration)
 nmap gu <Action>(FindUsages)
 nmap gi <Action>(GotoImplementation)
@@ -89,8 +69,9 @@ map <Leader>ne <Action>(GotoNextError) " Go To Next Error
 map <Leader>hh <Action>(HierarchyGroup) " HierarchyGroup (dependency tree)
 
 " Access to other windows
-nmap <Leader>e :NERDTreeFocus<CR>
-nmap <Leader>E :NERDTreeToggle<CR>
+nmap <Leader>nn :NERDTreeFocus<CR>
+nmap <Leader>nt :NERDTreeToggle<CR>
+nmap <Leader>ns <Action>(ActivateVersionControlToolWindow)
 nmap <Leader>s <Action>(FileStructurePopup)
 nmap <Leader>ff <Action>(SearchEverywhere)
 nmap <Leader>fg <Action>(FindInPath)
@@ -192,18 +173,6 @@ map <Leader>rq <Action>(Refactorings.QuickListPopupAction)
 " General purpose popups
 map <Leader>pp <Action>(ToolWindowsGroup)
 map <Leader>ge <Action>(EditorPopupMenu) " Equivalent to right-click (Vim btw.)
-
-" Git menu
-map <Leader>gh <Action>(Git.Menu)
-map <Leader>gm <Action>(Git.MainMenu)
-map <leader>ga <Action>(Annotate)
-map <Leader>cg <Action>(Github.Create.Gist) " Create Gist
-
-" Terminal access
-map <Leader>tm <Action>(ActivateTerminalToolWindow) " leader + tm to open terminal
-
-" Package Manager
-map <Leader>pkg <Action>(ActivateVcpkgToolWindow)
 
 " Harpoon mappings
 nnoremap <Leader>a :action AddToHarpoon<CR>
