@@ -1,6 +1,3 @@
-# Run winutil tweaks
-irm https://christitus.com/win -Config $env:USERPROFILE\.win-setup\winget_dsc\winutil_cofig.yaml -Run | iex
-
 # Upgrade existing packages
 winget upgrade --all
 
@@ -10,13 +7,12 @@ $chezmoiPath = "$env:USERPROFILE\AppData\Local\Microsoft\WinGet\Links\chezmoi.ex
 & $chezmoiPath init --apply Hier0nim
 
 # Winget setup
-winget configuration $env:USERPROFILE\.win-setup\winget_dsc\winget_settings.yaml
-winget configuration $env:USERPROFILE\.win-setup\winget_dsc\winget_utils.yaml
-winget configuration $env:USERPROFILE\.win-setup\winget_dsc\winget_development.yaml
+winget configuration -f $env:USERPROFILE\.win-setup\winget_dsc\winget_settings.yaml --disable-interactivity
+winget configuration -f $env:USERPROFILE\.win-setup\winget_dsc\winget_utils.yaml --disable-interactivity
+winget configuration -f $env:USERPROFILE\.win-setup\winget_dsc\winget_development.yaml --disable-interactivity
 
 # Chocolatey installations
 choco install $env:USERPROFILE\.win-setup\chocolatey.config
-
 
 # ---------------------------------------------------------------------------------------------
 # Register Task Scheduler tasks for specified programs to run at user login

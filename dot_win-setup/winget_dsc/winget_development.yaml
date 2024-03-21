@@ -32,13 +32,6 @@ properties:
         source: winget
     - resource: Microsoft.WinGet.DSC/WinGetPackage
       directives:
-        description: Installs Visual Studio Build Tools 2022
-        allowPrerelease: true
-      settings:
-        id: Microsoft.VisualStudio.2022.BuildTools
-        source: winget
-    - resource: Microsoft.WinGet.DSC/WinGetPackage
-      directives:
         description: Installs Node.js
         allowPrerelease: true
       settings:
