@@ -39,21 +39,10 @@ function Register-StartupTask {
         }
 }
 
-Register-StartupTask "ButteryTaskBar" "Runs Buttery TaskBar at user login" "$env:USERPROFILE\.win-setup\ButteryTaskBar\buttery-taskbar.exe"
+Register-StartupTask "ButteryTaskBar" "Runs Buttery TaskBar at user login" "$env:USERPROFILE\.win-setup\buttery-taskbar.exe"
 Register-StartupTask "GlazeWM" "Runs GlazeWM at user login" "$env:USERPROFILE\AppData\Local\Microsoft\WinGet\Packages\glzr-io.glazewm_Microsoft.Winget.Source_8wekyb3d8bbwe\glazewm.exe"
 Register-StartupTask "Throttlestop" "Runs ThrottleStop at user login" "C:\ProgramData\chocolatey\lib\throttlestop\tools\throttlestop\ThrottleStop.exe"
 Register-StartupTask "FlowLauncher" "Runs FlowLauncher at user login" "$env:USERPROFILE\AppData\Local\FlowLauncher\Flow.Launcher.exe"
-$Path = [System.Environment]::GetEnvironmentVariable("Path", [System.EnvironmentVariableTarget]::Machine)
-$NewPath = "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\Llvm\x64\bin"
-If (-Not $Path.Split(';').Contains($NewPath)) {
-    $NewPath = $Path + ";" + $NewPath
-    [System.Environment]::SetEnvironmentVariable("Path", $NewPath, [System.EnvironmentVariableTarget]::Machine)
-}
-
-# ---------------------------------------------------------------------------------------------
-# Add enviroment variable for c compiler
-# ---------------------------------------------------------------------------------------------
-
 $Path = [System.Environment]::GetEnvironmentVariable("Path", [System.EnvironmentVariableTarget]::Machine)
 $NewPath = "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\Llvm\x64\bin"
 If (-Not $Path.Split(';').Contains($NewPath)) {
