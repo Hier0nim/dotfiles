@@ -7,7 +7,7 @@ let mapleader = " "
 nnoremap <SPACE> <Nop>
 
 " Options for better editing experience
-set clipboard += unnamedplus                " integrate with system clipboard
+set clipboard+=unnamedplus                  " integrate with system clipboard
 set hlsearch                                " highlight search occurrences
 set ignorecase                              " ignore case in search patterns
 set smartcase                               " no ignore case when pattern is uppercase
@@ -31,9 +31,10 @@ set NERDTree
 set highlightedyank
 set sneak
 set quickscope
+set commentary
 
 " ========================================
-" Key Mappings
+" Navigation and Windows
 " ========================================
 
 " Tab navigation
@@ -64,43 +65,43 @@ nnoremap <C-l> <C-w>l
 nmap gd <Action>(GotoDeclaration)
 nmap gu <Action>(FindUsages)
 nmap gi <Action>(GotoImplementation)
+map <Leader>ne <Action>(GotoNextError)
 
-map <Leader>ne <Action>(GotoNextError) " Go To Next Error
-map <Leader>hh <Action>(HierarchyGroup) " HierarchyGroup (dependency tree)
-
-" Access to other windows
+" NERDTree
 nmap <Leader>nn :NERDTreeFocus<CR>
 nmap <Leader>nt :NERDTreeToggle<CR>
-nmap <Leader>ns <Action>(ActivateVersionControlToolWindow)
-nmap <Leader>s <Action>(FileStructurePopup)
+let g:NERDTreeMapActivateNode="l"
+let g:NERDTreeMapCloseDir="h"
+
+" Access to other windows
+nmap <Leader>fs <Action>(FileStructurePopup)
 nmap <Leader>ff <Action>(SearchEverywhere)
 nmap <Leader>fg <Action>(FindInPath)
+nmap <Leader>fr <Action>(RecentFiles)
+nmap <Leader>fc <Action>(RecentChangedFiles)
+nmap <Leader>fl <Action>(RecentLocations)
 nmap <Leader>r :registers<cr>
-nmap <Leader>al :actionlist<space>
 nmap <Leader>wp <Action>(ActivateProblemsViewToolWindow)
 nmap <Leader>wr <Action>(ActivateRunToolWindow)
 nmap <Leader>wg <Action>(ActivateVersionControlToolWindow)
-nmap <Leader>wc <Action>(ActivateCommitToolWindow)
-nmap <Leader>wd <Action>(ActivateDatabaseToolWindow)
-nmap <Leader>wn <Action>(ActivateNotificationsToolWindow)
 nmap <leader>wt <Action>(ActivateTerminalToolWindow)
-nmap <leader>wv <Action>(ActivateVersionControlToolWindow)
 nmap <Leader>wnc <Action>(ClearAllNotifications)
+nmap <Leader>wva <Action>(VimActions)
+nmap <Leader>mn <Action>(MainToolBar)
 
 " Perform actions in code
 nmap <Leader>ca <Action>(ShowIntentionActions)
 nmap <Leader>cr <Action>(RenameElement)
 nmap <Leader>cf <Action>(ReformatCode)
 nmap <Leader>cg <Action>(Generate)
-vmap <Leader>cv <Action>(IntroduceVariable)
 vmap <Leader>cm <Action>(ExtractMethod)
 nmap <Leader>ce <Action>(ShowErrorDescription)
 
 " Bookmarks
-map <Leader>bc <Action>(Bookmarks) "- General purpose
-map <Leader>bm <Action>(ActivateBookmarksToolWindow) "- Tool window
-map <Leader>bk <Action>(Bookmarks.Toggle) "- Create a bookmark
-map <Leader>ba <Action>(ShowBookmarks) "- Show all bookmarks
+map <Leader>bc <Action>(Bookmarks)
+map <Leader>bm <Action>(ActivateBookmarksToolWindow)
+map <Leader>bk <Action>(Bookmarks.Toggle)
+map <Leader>ba <Action>(ShowBookmarks)
 
 " Save current file
 nmap <C-s> :w<CR>
@@ -116,6 +117,9 @@ nmap <Leader>dt <Action>(DebugClass)
 " Editor content selection
 nnoremap <C-A> gg<S-v>G
 
+" Clear highlight on pressing ESC
+nnoremap <esc> :noh<return><esc>
+
 " Redefine undo/redo
 nmap U <C-r>
 
@@ -129,17 +133,8 @@ vmap <S-k> :m '<-2<CR>gv=gv
 vmap < <gv^
 vmap > >gv^
 
-" Window appearance controls
-map <leader>vv <Action>(ToggleFullScreen)
-map <leader>vf <Action>(ToggleDistractionFreeMode)
-map <leader>vp <Action>(TogglePresentationMode)
-
 " Reload .ideavimrc
 nmap <Leader>ir <Action>(IdeaVim.ReloadVimRc.reload)
-
-" NERDTree keymaps
-let g:NERDTreeMapActivateNode="l"
-let g:NERDTreeMapCloseDir="h"
 
 " REPL
 map <Leader>rr <Action>(Run)
@@ -154,25 +149,17 @@ nmap <Leader>fg <Action>(FindInPath)
 " Inspect Code
 map <Leader>ic <Action>(InspectCode)
 
-" Rename
-map <Leader>rn <Action>(RenameFile)
-
-" Access main toolbar
-map <Leader>mn <Action>(MainToolBar)
-
-" Vim actions
-map <Leader>va <Action>(VimActions)
+" Don't use Ex mode, use Q for formatting.
+map Q gq
 
 " GUI controls
 map <Leader>tb <Action>(ViewStatusBar)
 map <Leader>td <Action>(ToggleDistractionFreeMode)
-
-" Refactoring
-map <Leader>rq <Action>(Refactorings.QuickListPopupAction)
+map <leader>tv <Action>(ToggleFullScreen)
 
 " General purpose popups
 map <Leader>pp <Action>(ToolWindowsGroup)
-map <Leader>ge <Action>(EditorPopupMenu) " Equivalent to right-click (Vim btw.)
+map <Leader>ge <Action>(EditorPopupMenu)
 
 " Harpoon mappings
 nnoremap <Leader>a :action AddToHarpoon<CR>
