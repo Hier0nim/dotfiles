@@ -43,4 +43,11 @@ properties:
         allowPrerelease: true
       settings:
         id: Microsoft.DotNet.SDK.8
+        source: winget 
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: Installs gitui
+        allowPrerelease: true
+      settings:
+        id: StephanDilly.gitui
         source: winget
