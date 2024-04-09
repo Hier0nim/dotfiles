@@ -24,6 +24,7 @@ F24 & l::Right
 F24 & u::Home
 F24 & o::End
 F24 & n::BackSpace
+F24 & m::Delete
 
 F24 & Escape::Send, ``
 F24 & 1::F1
