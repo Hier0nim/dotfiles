@@ -1,6 +1,6 @@
 general:
   # Whether to automatically focus windows underneath the cursor.
-  focus_follows_cursor: true
+  focus_follows_cursor: false
 
   # Whether to jump the cursor between windows focused by the WM.
   cursor_follow_focus: false
@@ -161,7 +161,11 @@ window_rules:
 
   - command: "set floating"
     match_class_name: "#32770"
+
+  - command: "set floating"
     match_process_name: "/BuildProtokoll"
+
+  - command: "set floating"
     match_title: "/Rename|Run/Debug Configurations|Settings|Harpoon/"
 
   - command: "set tiling"

@@ -19,6 +19,7 @@ set relativenumber                          " how the line number relative to th
 set scrolloff=8                             " minimum number of columns to scroll horizontally
 set sidescrolloff=8                         " min. number of columns to left and right of cursor
 set showmode                                " message on the status line to show current mode
+set visualbell                              " use visual bell instead of beeping
 
 " Recommended IdeaVim settings
 set ideajoin
@@ -51,6 +52,7 @@ map <leader>g0 <action>(GoToLastTab)
 map <leader>tp <action>(PinActiveEditorTab)
 map <leader>tc <action>(CloseAllUnpinnedEditors)
 map <leader>tca <action>(CloseAllEditors)
+map <leader>tco <action>(CloseAllEditorsButActive)
 
 " Window navigation
 nmap <Leader>v :vsplit<CR>
@@ -68,10 +70,9 @@ nmap gi <Action>(GotoImplementation)
 map <Leader>ne <Action>(GotoNextError)
 
 " NERDTree
-nmap <Leader>nn :NERDTreeFocus<CR>
-nmap <Leader>nt :NERDTreeToggle<CR>
-let g:NERDTreeMapActivateNode="l"
+nmap <Leader>n :NERDTreeFocus<CR>
 let g:NERDTreeMapCloseDir="h"
+let g:NERDTreeMapActivateNode="o"
 
 " Access to other windows
 nmap <Leader>fs <Action>(FileStructurePopup)
@@ -90,7 +91,7 @@ nmap <Leader>wva <Action>(VimActions)
 nmap <Leader>mn <Action>(MainToolBar)
 
 " Perform actions in code
-nmap <Leader>ca <Action>(ShowIntentionActions)
+nmap <Leader>a <Action>(ShowIntentionActions)
 nmap <Leader>cr <Action>(RenameElement)
 nmap <Leader>cf <Action>(ReformatCode)
 nmap <Leader>cg <Action>(Generate)
@@ -133,6 +134,10 @@ vmap <S-k> :m '<-2<CR>gv=gv
 vmap < <gv^
 vmap > >gv^
 
+" Insert blank line
+map <Enter> o<ESC>
+map <S-Enter> O<ESC>
+
 " Reload .ideavimrc
 nmap <Leader>ir <Action>(IdeaVim.ReloadVimRc.reload)
 
@@ -162,7 +167,7 @@ map <Leader>pp <Action>(ToolWindowsGroup)
 map <Leader>ge <Action>(EditorPopupMenu)
 
 " Harpoon mappings
-nnoremap <Leader>a :action AddToHarpoon<CR>
+nnoremap <Leader>sa :action AddToHarpoon<CR>
 nnoremap <Leader>sh :action ShowHarpoon<CR>
 nnoremap <Leader>1 :action GotoHarpoon1<CR>
 nnoremap <Leader>2 :action GotoHarpoon2<CR>
