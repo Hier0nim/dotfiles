@@ -67,7 +67,7 @@ nnoremap <C-l> <C-w>l
 nmap gd <Action>(GotoDeclaration)
 nmap gu <Action>(FindUsages)
 nmap gi <Action>(GotoImplementation)
-map <Leader>ne <Action>(GotoNextError)
+map <Leader>e <Action>(GotoNextError)
 
 " NERDTree
 nmap <Leader>n :NERDTreeFocus<CR>
