@@ -27,6 +27,7 @@ $Space::
     return
 
 #inputlevel,1
+
 ; Modified Fn layer keys to check the state of spaceReleasedEarly
 F24 & k::FnLayer("k", "Up")
 F24 & j::FnLayer("j", "Down")
@@ -53,13 +54,10 @@ F24 & =::FnLayer("=", "F12")
 
 FnLayer(key, action) {
     global spaceReleasedEarly
-    if (spaceReleasedEarly)
-    {
-        Send, {%key%}
-    }
-    else
-    {
-        Send, {%action%}
+    if (spaceReleasedEarly) {
+        Send, {Blind}{%key%}
+    } else {
+        Send, {Blind}{%action%}
     }
 }
 
