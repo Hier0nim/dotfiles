@@ -17,3 +17,10 @@ if ($host.Name -eq 'ConsoleHost')
 }
 
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
+
+
+# Funtions
+
+function which ($name){
+  Get-Command $name | Select-Object -ExpandProperty Definition
+}
