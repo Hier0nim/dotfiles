@@ -12,11 +12,12 @@ spaceReleasedEarly := false
 #inputlevel,2
 $Space::
     spaceReleasedEarly := false
+    fnKeyPressed := false
     SetMouseDelay -1
     Send {Blind}{F24 DownR}
     KeyWait, Space
     Send {Blind}{F24 up}
-    if (spaceReleasedEarly)
+    if (spaceReleasedEarly and !fnKeyPressed)
     {
         Send {Space}
     }
@@ -53,10 +54,11 @@ F24 & -::FnLayer("-", "F11")
 F24 & =::FnLayer("=", "F12")
 
 FnLayer(key, action) {
-    global spaceReleasedEarly
+    global spaceReleasedEarly, fnKeyPressed
     if (spaceReleasedEarly) {
         Send, {Blind}{%key%}
     } else {
+        fnKeyPressed := true
         Send, {Blind}{%action%}
     }
 }
