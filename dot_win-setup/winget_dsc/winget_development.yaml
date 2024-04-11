@@ -51,3 +51,11 @@ properties:
       settings:
         id: StephanDilly.gitui
         source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: Installs lazygit
+        allowPrerelease: true
+      settings:
+        id: JesseDuffield.lazygit
+        source: winget
+
