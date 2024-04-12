@@ -1,9 +1,10 @@
-oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\dracula.omp.json" | Invoke-Expression
+oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\hotstick.minimal.omp.json" | Invoke-Expression
 $PSStyle.FileInfo.Directory = ""
 $env:EDITOR='nvim'
 
 Import-Module -Name Terminal-Icons
 Import-Module ZLocation
+Import-Module "gsudoModule"
 
 if ($host.Name -eq 'ConsoleHost')
 {

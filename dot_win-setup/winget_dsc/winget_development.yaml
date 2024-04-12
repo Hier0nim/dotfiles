@@ -58,4 +58,10 @@ properties:
       settings:
         id: JesseDuffield.lazygit
         source: winget
-
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: Installs gsudo
+        allowPrerelease: true
+      settings:
+        id: gerardog.gsudo
+        source: winget
