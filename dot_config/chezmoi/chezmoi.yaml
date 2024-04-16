@@ -13,5 +13,4 @@ merge:
     args:
         - '-d'
         - '{{ .Destination }}'
-        - '{{ .Source }}'
         - '{{ .Target }}'
