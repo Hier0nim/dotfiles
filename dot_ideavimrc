@@ -70,9 +70,11 @@ nmap gi <Action>(GotoImplementation)
 map <Leader>e <Action>(GotoNextError)
 
 " NERDTree
-nmap <Leader>n :NERDTreeFocus<CR>
+nmap \\ :NERDTreeFocus<CR>
+nmap \| :NERDTreeFocus<CR>
 let g:NERDTreeMapCloseDir="h"
 let g:NERDTreeMapActivateNode="o"
+let g:NERDTreeMapQuit='\'
 
 " Access to other windows
 nmap <Leader>fs <Action>(FileStructurePopup)
@@ -146,6 +148,7 @@ map <Leader>rr <Action>(Run)
 map <Leader>rm <Action>(RunMenu)
 map <Leader>rd <Action>(Debug)
 map <Leader>rb <Action>(build)
+map <Leader>rc <Action>(RiderDebuggerApplyEncChagnes)
 
 " Find
 nmap <Leader>ff <Action>(SearchEverywhere)

@@ -144,12 +144,13 @@ workspaces:
   - name: "6"
     bind_to_monitor: 2
   - name: "7"
-    display_name: "chat"
     bind_to_monitor: 2
   - name: "8"
-    display_name: "mail"
     bind_to_monitor: 2
   - name: "9"
+    display_name: "chat"
+    bind_to_monitor: 2
+  - name: "10"
     display_name: "🎶"
     bind_to_monitor: 2
 
@@ -174,13 +175,13 @@ window_rules:
   - command: "move to workspace 1"
     match_process_name: "JetBrains Rider"
 
-  - command: "move to workspace 7"
+  - command: "move to workspace 9"
     match_process_name: "/ms-teams|Discord/"
 
-  - command: "move to workspace 8"
+  - command: "move to workspace 9"
     match_process_name: "OUTLOOK"
 
-  - command: "move to workspace 9"
+  - command: "move to workspace 10"
     match_process_name: "Spotify"
 
   - command: "resize borders 0px -7px -7px -7px"
@@ -304,6 +305,8 @@ keybindings:
     binding: "Alt+8"
   - command: "focus workspace 9"
     binding: "Alt+9"
+  - command: "focus workspace 10"
+    binding: "Alt+0"
 
   # Move focused workspace to a monitor in a given direction.
   - command: "move workspace left"
@@ -333,7 +336,9 @@ keybindings:
   - commands: ["move to workspace 8", "focus workspace 8"]
     binding: "Alt+Shift+8"
   - commands: ["move to workspace 9", "focus workspace 9"]
-    bindings: ["Alt+Shift+9"]
+    binding: "Alt+Shift+9"
+  - commands: ["move to workspace 10", "focus workspace 10"]
+    binding: "Alt+Shift+0"
 
 #################################################################################################
 

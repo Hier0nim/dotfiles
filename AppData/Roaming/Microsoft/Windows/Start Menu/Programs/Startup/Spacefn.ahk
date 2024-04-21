@@ -5,66 +5,54 @@
 ; Remap ` to Esc
 *`::Send, {Esc}
 
-; Initialize a variable to track if the spacebar was released before the FN layer key
-spaceReleasedEarly := false
+fnKeyPressed := false
 
 ; SpaceFn Setup
 #inputlevel,2
 $Space::
-    spaceReleasedEarly := false
     fnKeyPressed := false
-    SetMouseDelay -1
     Send {Blind}{F24 DownR}
     KeyWait, Space
     Send {Blind}{F24 up}
-    if (spaceReleasedEarly and !fnKeyPressed)
-    {
+    if (!fnKeyPressed) {
         Send {Space}
-    }
-    else if (A_ThisHotkey = "$Space" and A_TimeSinceThisHotkey < 300)
-    {
-        Send {Blind}{Space DownR}
     }
     return
 
 #inputlevel,1
 
-; Modified Fn layer keys to check the state of spaceReleasedEarly
-F24 & k::FnLayer("k", "Up")
-F24 & j::FnLayer("j", "Down")
-F24 & h::FnLayer("h", "Left")
-F24 & l::FnLayer("l", "Right")
-F24 & u::FnLayer("u", "Home")
-F24 & o::FnLayer("o", "End")
-F24 & n::FnLayer("n", "BackSpace")
-F24 & m::FnLayer("m", "Delete")
+; Define hotkeys for the F24 combinations using up events
+F24 & k Up::FnLayer("k", "Up")
+F24 & j Up::FnLayer("j", "Down")
+F24 & h Up::FnLayer("h", "Left")
+F24 & l Up::FnLayer("l", "Right")
+F24 & u Up::FnLayer("u", "Home")
+F24 & o Up::FnLayer("o", "End")
+F24 & n Up::FnLayer("n", "BackSpace")
+F24 & m Up::FnLayer("m", "Delete")
 
-F24 & Escape::FnLayer("Escape", "``")
-F24 & 1::FnLayer("1", "F1")
-F24 & 2::FnLayer("2", "F2")
-F24 & 3::FnLayer("3", "F3")
-F24 & 4::FnLayer("4", "F4")
-F24 & 5::FnLayer("5", "F5")
-F24 & 6::FnLayer("6", "F6")
-F24 & 7::FnLayer("7", "F7")
-F24 & 8::FnLayer("8", "F8")
-F24 & 9::FnLayer("9", "F9")
-F24 & 0::FnLayer("0", "F10")
-F24 & -::FnLayer("-", "F11")
-F24 & =::FnLayer("=", "F12")
+F24 & Escape Up::FnLayer("Escape", "``")
+F24 & 1 Up::FnLayer("1", "F1")
+F24 & 2 Up::FnLayer("2", "F2")
+F24 & 3 Up::FnLayer("3", "F3")
+F24 & 4 Up::FnLayer("4", "F4")
+F24 & 5 Up::FnLayer("5", "F5")
+F24 & 6 Up::FnLayer("6", "F6")
+F24 & 7 Up::FnLayer("7", "F7")
+F24 & 8 Up::FnLayer("8", "F8")
+F24 & 9 Up::FnLayer("9", "F9")
+F24 & 0 Up::FnLayer("0", "F10")
+F24 & - Up::FnLayer("-", "F11")
+F24 & = Up::FnLayer("=", "F12")
 
 FnLayer(key, action) {
-    global spaceReleasedEarly, fnKeyPressed
-    if (spaceReleasedEarly) {
-        Send, {Blind}{%key%}
-    } else {
+    global fnKeyPressed
         fnKeyPressed := true
+    if (GetKeyState("Space", "P")) {
         Send, {Blind}{%action%}
+    } else {
+        Send, {Blind}{%key%}
     }
 }
-
-$Space Up::
-    spaceReleasedEarly := true
-return
 
 #inputlevel,0
