@@ -18,6 +18,7 @@ choco install $env:USERPROFILE\.win-setup\chocolatey.config
 
 # Powershell modules install
 Set-PSRepository PSGallery -InstallationPolicy Trusted
+Install-Module ZLocation -Scope CurrentUser
 Install-Module -Name PSFzf
 Install-Module -Name Terminal-Icons -Repository PSGallery
 Install-Module PSReadLine
