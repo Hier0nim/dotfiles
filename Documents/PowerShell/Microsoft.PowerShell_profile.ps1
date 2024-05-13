@@ -3,6 +3,7 @@ $PSStyle.FileInfo.Directory = ""
 $env:EDITOR='nvim'
 
 Import-Module -Name Terminal-Icons
+Import-Module ZLocation
 Import-Module "gsudoModule"
 Import-Module ZLocation
 
@@ -20,5 +21,3 @@ if ($host.Name -eq 'ConsoleHost')
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
 
 Set-Alias -Name which -Value Get-Command
-
-# Funtions

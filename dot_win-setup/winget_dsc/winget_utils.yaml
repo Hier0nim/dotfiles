@@ -100,10 +100,3 @@ properties:
       settings:
         id: "Microsoft.PowerShell"
         source: winget
-    - resource: Microsoft.WinGet.DSC/WinGetPackage
-      directives:
-        description: "Installs Zoxide"
-        allowPrerelease: true
-      settings:
-        id: "ajeetdsouza.zoxide"
-        source: winget
