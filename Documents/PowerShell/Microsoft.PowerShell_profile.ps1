@@ -4,6 +4,7 @@ $env:EDITOR='nvim'
 
 Import-Module -Name Terminal-Icons
 Import-Module "gsudoModule"
+Import-Module ZLocation
 
 if ($host.Name -eq 'ConsoleHost')
 {
@@ -11,18 +12,13 @@ if ($host.Name -eq 'ConsoleHost')
 
   Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
   Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
-  Set-PSReadLineOption -PredictionSource HistoryAndPlugin 
+  Set-PSReadLineOption -PredictionSource HistoryAndPlugin
   Set-PSReadLineOption -HistorySearchCursorMovesToEnd
-  Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete        
+  Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 }
 
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
 
-Invoke-Expression (& { (zoxide init powershell | Out-String) })
-
+Set-Alias -Name which -Value Get-Command
 
 # Funtions
-
-function which ($name){
-  Get-Command $name | Select-Object -ExpandProperty Definition
-}

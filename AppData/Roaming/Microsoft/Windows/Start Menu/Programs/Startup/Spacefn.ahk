@@ -1,4 +1,6 @@
-﻿; Remap Caps Lock to Left Ctrl
+﻿Suspend, On
+
+; Remap Caps Lock to Left Ctrl
 *CapsLock::Send, {LCtrl Down}
 *CapsLock Up::Send, {LCtrl Up}
 
