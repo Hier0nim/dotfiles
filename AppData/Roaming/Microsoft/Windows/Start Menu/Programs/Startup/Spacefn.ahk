@@ -1,4 +1,10 @@
-﻿confFilePath := "./conf.ini"
+﻿#Requires AutoHotkey v2.0.12
+#SingleInstance
+
+; Map Ctrl to CapsLock 
+CapsLock::Ctrl
+
+confFilePath := "./conf.ini"
 conf := getConf()
 
 ; Obtain the virtual key (vk) and monitoring key mappings
@@ -166,7 +172,7 @@ GetDEFAULTConf(){
     keyMap["Del"] := "{Ins}"
     keyMap["n"] := "{Backspace}"
     keyMap["m"] := "{Delete}"
-    keyMap["``"] := "{Esc}"
+    keyMap["Esc"] := "{``}"
     keyMap["1"] := "{F1}"
     keyMap["2"] := "{F2}"
     keyMap["3"] := "{F3}"

@@ -68,7 +68,10 @@ nnoremap <C-l> <C-w>l
 nmap gd <Action>(GotoDeclaration)
 nmap gu <Action>(FindUsages)
 nmap gi <Action>(GotoImplementation)
+nmap go <Action>(GotoSuperMethod)
 map <Leader>e <Action>(GotoNextError)
+nmap <C-i> <Action>(Forward)
+nmap <C-o> <Action>(Back)
 
 " NERDTree
 nmap \\ :NERDTreeFocus<CR>
@@ -89,9 +92,11 @@ nmap <Leader>wp <Action>(ActivateProblemsViewToolWindow)
 nmap <Leader>wr <Action>(ActivateRunToolWindow)
 nmap <Leader>wg <Action>(ActivateVersionControlToolWindow)
 nmap <leader>wt <Action>(ActivateTerminalToolWindow)
-nmap <Leader>wnc <Action>(ClearAllNotifications)
-nmap <Leader>wva <Action>(VimActions)
-nmap <Leader>mn <Action>(MainToolBar)
+nmap <Leader>wn <Action>(ClearAllNotifications)
+nmap <Leader>wv <Action>(VimActions)
+nmap <Leader>wb <Action>(ActivateBookmarksToolWindow)
+nmap <Leader>wm <Action>(MainToolBar)
+nmap <Leader>wf <Action>(ActivateFindToolWindow)
 
 " Perform actions in code
 nmap <Leader>a <Action>(ShowIntentionActions)
@@ -102,10 +107,7 @@ vmap <Leader>cm <Action>(ExtractMethod)
 nmap <Leader>ce <Action>(ShowErrorDescription)
 
 " Bookmarks
-map <Leader>bc <Action>(Bookmarks)
-map <Leader>bm <Action>(ActivateBookmarksToolWindow)
-map <Leader>bk <Action>(Bookmarks.Toggle)
-map <Leader>ba <Action>(ShowBookmarks)
+map <Leader>b <Action>(ShowBookmarks)
 
 " Save current file
 nmap <C-s> :w<CR>
@@ -165,21 +167,8 @@ map Q gq
 map <Leader>tb <Action>(ViewStatusBar)
 map <Leader>td <Action>(ToggleDistractionFreeMode)
 map <leader>tv <Action>(ToggleFullScreen)
+map <leader>ti <Action>(EditorToggleShowIndentLines)
 
 " General purpose popups
 map <Leader>pp <Action>(ToolWindowsGroup)
 map <Leader>ge <Action>(EditorPopupMenu)
-
-" Harpoon mappings
-nnoremap <Leader>sa :action AddToHarpoon<CR>
-nnoremap <Leader>sh :action ShowHarpoon<CR>
-nnoremap <Leader>1 :action GotoHarpoon1<CR>
-nnoremap <Leader>2 :action GotoHarpoon2<CR>
-nnoremap <Leader>3 :action GotoHarpoon3<CR>
-nnoremap <Leader>4 :action GotoHarpoon4<CR>
-nnoremap <Leader>5 :action GotoHarpoon5<CR>
-nnoremap <Leader>s1 :action SetHarpoon1<CR>
-nnoremap <Leader>s2 :action SetHarpoon2<CR>
-nnoremap <Leader>s3 :action SetHarpoon3<CR>
-nnoremap <Leader>s4 :action SetHarpoon4<CR>
-nnoremap <Leader>s5 :action SetHarpoon5<CR>
