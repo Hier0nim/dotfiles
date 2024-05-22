@@ -6,12 +6,25 @@
 # Functions
 # ---------------------------------------------------------------------------------------------
 
-# Check if the script is running with elevated privileges
-function Test-IsElevated
+# Function to ensure chezmoi is installed via winget and initialize it if necessary
+function EnsureAndInitializeChezmoi
 {
-    return ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
-}
+    EnsureWingetPackage "twpayne.chezmoi"
+    $chezmoiPath = "$env:USERPROFILE\AppData\Local\Microsoft\WinGet\Links\chezmoi.exe"
+    $chezmoiDir = "$env:USERPROFILE\.local\share\chezmoi"
 
+    if (Test-Path $chezmoiPath)
+    {
+        if (-not (Test-Path "$chezmoiDir\.git"))
+        {
+            & $chezmoiPath init --apply Hier0nim
+        }
+        & $chezmoiPath update -v
+    } else
+    {
+        Write-Host "Chezmoi executable not found: $chezmoiPath" -ForegroundColor Red
+    }
+}
 
 # Function to check if a command exists
 function CheckCommand
@@ -53,24 +66,47 @@ function RegisterStartupTask
     $existingTask = Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue
     if ($existingTask)
     {
-        $currentAction = ($existingTask.Actions | Where-Object { $_.Executable -eq $ExecutablePath })
+        $currentAction = ($existingTask.Actions | Where-Object { 
+                $_.Executable -eq $ExecutablePath -and $_.Arguments -eq $Arguments 
+            })
 
-        if ($currentAction)
+        $currentTrigger = ($existingTask.Triggers | Where-Object { 
+                $_.AtStartup -and $_.Enabled -eq $true 
+            })
+
+        $currentPrincipal = $existingTask.Principal.UserId -eq "BUILTIN\Users" -and $existingTask.Principal.LogonType -eq "Interactive" -and $existingTask.Principal.RunLevel -eq "Limited"
+        $currentSettings = $existingTask.Settings.AllowStartIfOnBatteries -and $existingTask.Settings.DontStopIfGoingOnBatteries -and $existingTask.Settings.StartWhenAvailable
+
+        if ($currentAction -and $currentTrigger -and $currentPrincipal -and $currentSettings)
         {
-            Write-Host "Task $TaskName is already registered with the correct executable." -ForegroundColor Yellow
+            Write-Host "Task $TaskName is already registered with the correct properties." -ForegroundColor Yellow
             return
         }
 
         Unregister-ScheduledTask -TaskName $TaskName -Confirm:$false
     }
 
-    $action = New-ScheduledTaskAction -Execute $ExecutablePath -Argument $Arguments
-    $trigger = New-ScheduledTaskTrigger -AtLogOn
-    $principal = New-ScheduledTaskPrincipal -UserId "BUILTIN\Users" -LogonType Interactive -RunLevel Limited
-    $settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable
+    try
+    {
+        if ([string]::IsNullOrEmpty($Arguments))
+        {
+            $action = New-ScheduledTaskAction -Execute $ExecutablePath
+        } else
+        {
+            $action = New-ScheduledTaskAction -Execute $ExecutablePath -Argument $Arguments
+        }
 
-    Register-ScheduledTask -TaskName $TaskName -Description $Description -Action $action -Trigger $trigger -Principal $principal -Settings $settings
-    Write-Host "Task $TaskName has been registered." -ForegroundColor Green
+        $trigger = New-ScheduledTaskTrigger -AtLogOn
+        $Principal = New-ScheduledTaskPrincipal -UserId "$env:USERDOMAIN\$env:USERNAME" -LogonType Interactive -RunLevel Highest
+        $settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable
+
+        Register-ScheduledTask -TaskName $TaskName -Description $Description -Action $action -Trigger $trigger -Principal $principal -Settings $settings
+
+        Write-Host "Task $TaskName has been registered." -ForegroundColor Green
+    } catch
+    {
+        Write-Host "Failed to register task $TaskName $_" -ForegroundColor Red
+    }
 }
 
 # Function to apply winget configuration if the state doesn't match
@@ -112,18 +148,19 @@ function EnsureWingetPackages
         return
     }
 
-
     # Load the XML configuration
     [xml]$config = Get-Content $ConfigPath
 
     # Get the list of currently installed packages once
-    $installedPackages = winget list
+    $installedPackages = winget list | Select-Object -Skip 1 | ForEach-Object { 
+        $_.Trim() -split '\s{2,}' | Select-Object -Index 1
+    }
 
     # Iterate over each package in the XML
     foreach ($package in $config.Configuration.Packages.Package)
     {
         $packageId = $package.id
-        if ($installedPackages -notmatch $packageId)
+        if ($installedPackages -notcontains $packageId)
         {
             Write-Host "Package $packageId requires installation." -ForegroundColor Yellow
             winget install --id $packageId --accept-package-agreements --accept-source-agreements
@@ -132,24 +169,11 @@ function EnsureWingetPackages
             Write-Host "Package $packageId is already installed." -ForegroundColor Green
         }
     }
-
 }
 
 # ---------------------------------------------------------------------------------------------
 # START
 # ---------------------------------------------------------------------------------------------
-
-# Relaunch the script with elevated privileges if not already elevated
-if (-not (Test-IsElevated))
-{
-    $shell = "powershell"
-    if (Get-Command pwsh -ErrorAction SilentlyContinue)
-    {
-        $shell = "pwsh"
-    }
-    Start-Process $shell -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs
-    exit
-}
 
 # Ensure winget is installed
 if ($null -eq (CheckCommand winget))
@@ -165,16 +189,7 @@ if ($null -eq (CheckCommand winget))
 # Install and initialize dotfiles manager
 # ---------------------------------------------------------------------------------------------
 
-EnsureWingetPackage "twpayne.chezmoi"
-$chezmoiPath = "$env:USERPROFILE\AppData\Local\Microsoft\WinGet\Links\chezmoi.exe"
-if (Test-Path $chezmoiPath)
-{
-    & $chezmoiPath init --apply Hier0nim
-    & $chezmoiPath update -v
-} else
-{
-    Write-Host "Chezmoi executable not found: $chezmoiPath" -ForegroundColor Red
-}
+EnsureAndInitializeChezmoi
 
 # ---------------------------------------------------------------------------------------------
 # Winget setup using DSC configurations
@@ -235,6 +250,15 @@ foreach ($module in $psModules)
 }
 
 # ---------------------------------------------------------------------------------------------
+# Ensure scoop is installed
+# ---------------------------------------------------------------------------------------------
+
+if ($null -eq (CheckCommand scoop))
+{
+    Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
+}
+
+# ---------------------------------------------------------------------------------------------
 # Register Task Scheduler tasks for specified programs to run at user login
 # ---------------------------------------------------------------------------------------------
 
@@ -252,44 +276,15 @@ foreach ($task in $tasks)
 }
 
 # ---------------------------------------------------------------------------------------------
-# UNELEVATED SECTION 
+# Execute unelevated section
 # ---------------------------------------------------------------------------------------------
 
-if (Test-IsElevated) {
-    # Ensure this fragment is run from an unelevated shell
-    $shell = "powershell"
-    if (Get-Command pwsh -ErrorAction SilentlyContinue)
-    {
-        $shell = "pwsh"
-    }
-
-    Start-Process $shell -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`""
-    exit
-}
-
-# ---------------------------------------------------------------------------------------------
-# Scoop packages installations
-# ---------------------------------------------------------------------------------------------
-
-if ($args[0] -eq "NonElevatedFragment")
+$shell = "powershell"
+if (Get-Command pwsh -ErrorAction SilentlyContinue)
 {
-    $scoopPackagesFile = "$env:USERPROFILE\.win-setup\scoop.config"
-    if (Test-Path $scoopPackagesFile)
-    {
-        [xml]$scoopXml = Get-Content $scoopPackagesFile
-        $installedPackages = scoop list | Select-String -Pattern 'Name'
-        foreach ($package in $scoopXml.packages.package)
-        {
-            if ($null -eq ($installedPackages -match $package.id))
-            {
-                scoop install $package.id
-            }
-        }
-    } else
-    {
-        Write-Host "Scoop configuration file not found: $scoopPackagesFile" -ForegroundColor Yellow
-    }
+    $shell = "pwsh"
 }
+Start-Process -NoNewWindow -FilePath $shell -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$env:USERPROFILE\.win-setup\setup_unelevated.ps1`""
 
 # ---------------------------------------------------------------------------------------------
 # Ask for restart confirmation
