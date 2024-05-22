@@ -40,7 +40,6 @@ set commentary
 " ========================================
 
 " Tab navigation
-nmap <A-q> :tabclose<CR>
 nmap <Tab> gt
 nmap <S-Tab> gT
 map <leader>g1 <action>(GoToTab1)
