@@ -40,7 +40,8 @@ function RegisterStartupTask
     param (
         [string]$TaskName,
         [string]$Description,
-        [string]$ExecutablePath
+        [string]$ExecutablePath,
+        [string]$Arguments
     )
 
     if ($null -eq (Test-Path $ExecutablePath))
@@ -56,30 +57,20 @@ function RegisterStartupTask
 
         if ($currentAction)
         {
-            Write-Host "Task $TaskName already exists with the correct path. No changes needed." -ForegroundColor Green
+            Write-Host "Task $TaskName is already registered with the correct executable." -ForegroundColor Yellow
             return
-        } else
-        {
-            Write-Host "Task $TaskName exists but with a different path. Updating task..." -ForegroundColor Yellow
-            Unregister-ScheduledTask -TaskName $TaskName -Confirm:$false
         }
+
+        Unregister-ScheduledTask -TaskName $TaskName -Confirm:$false
     }
 
-    $Action = New-ScheduledTaskAction -Execute $ExecutablePath
-    $Trigger = New-ScheduledTaskTrigger -AtLogon
-    $Principal = New-ScheduledTaskPrincipal -UserId "$env:USERDOMAIN\$env:USERNAME" -LogonType Interactive -RunLevel Highest
+    $action = New-ScheduledTaskAction -Execute $ExecutablePath -Argument $Arguments
+    $trigger = New-ScheduledTaskTrigger -AtLogOn
+    $principal = New-ScheduledTaskPrincipal -UserId "BUILTIN\Users" -LogonType Interactive -RunLevel Limited
+    $settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable
 
-    try
-    {
-        Register-ScheduledTask -Action $Action -Trigger $Trigger -TaskName $TaskName -Description $Description -Principal $Principal | Out-Null
-        $task = Get-ScheduledTask -TaskName $TaskName
-        $task.Settings.DisallowStartIfOnBatteries = $false
-        $task.Settings.StopIfGoingOnBatteries = $false
-        Set-ScheduledTask -InputObject $task
-    } catch
-    {
-        Write-Host "Failed to register task: $TaskName" -ForegroundColor Red
-    }
+    Register-ScheduledTask -TaskName $TaskName -Description $Description -Action $action -Trigger $trigger -Principal $principal -Settings $settings
+    Write-Host "Task $TaskName has been registered." -ForegroundColor Green
 }
 
 # Function to apply winget configuration if the state doesn't match
@@ -248,26 +239,31 @@ foreach ($module in $psModules)
 # ---------------------------------------------------------------------------------------------
 
 $tasks = @(
-    @{Name="ButteryTaskBar"; Description="Runs Buttery TaskBar at user login"; Path="$env:USERPROFILE\.win-setup\buttery-taskbar.exe"},
-    @{Name="GlazeWM"; Description="Runs GlazeWM at user login"; Path="$env:USERPROFILE\AppData\Local\Microsoft\WinGet\Packages\glzr-io.glazewm_Microsoft.Winget.Source_8wekyb3d8bbwe\glazewm.exe"},
-    @{Name="Throttlestop"; Description="Runs ThrottleStop at user login"; Path="C:\ProgramData\chocolatey\lib\throttlestop\tools\throttlestop\ThrottleStop.exe"},
-    @{Name="FlowLauncher"; Description="Runs FlowLauncher at user login"; Path="$env:USERPROFILE\AppData\Local\FlowLauncher\Flow.Launcher.exe"},
-    @{Name="SpaceFn"; Description="Runs SpaceFn at user login"; Path="$env:USERPROFILE\.win-setup\SpaceFn.ahk"}
+    @{Name="ButteryTaskBar"; Description="Runs Buttery TaskBar at user login"; Path="$env:USERPROFILE\.win-setup\buttery-taskbar.exe"; Args=""},
+    @{Name="GlazeWM"; Description="Runs GlazeWM at user login"; Path="$env:USERPROFILE\AppData\Local\Microsoft\WinGet\Packages\glzr-io.glazewm_Microsoft.Winget.Source_8wekyb3d8bbwe\glazewm.exe"; Args=""},
+    @{Name="Throttlestop"; Description="Runs ThrottleStop at user login"; Path="C:\ProgramData\chocolatey\lib\throttlestop\tools\throttlestop\ThrottleStop.exe"; Args=""},
+    @{Name="FlowLauncher"; Description="Runs FlowLauncher at user login"; Path="$env:USERPROFILE\AppData\Local\FlowLauncher\Flow.Launcher.exe"; Args=""},
+    @{Name="SpaceFn"; Description="Runs SpaceFn at user login"; Path="$env:USERPROFILE\AppData\Local\Programs\AutoHotkey\v2\AutoHotkey64.exe"; Args="$env:USERPROFILE\.win-setup\SpaceFn.ahk"}
 )
 
 foreach ($task in $tasks)
 {
-    RegisterStartupTask -TaskName $task.Name -Description $task.Description -ExecutablePath $task.Path
+    RegisterStartupTask -TaskName $task.Name -Description $task.Description -ExecutablePath $task.Path -Arguments $task.Args
 }
 
 # ---------------------------------------------------------------------------------------------
 # UNELEVATED SECTION 
 # ---------------------------------------------------------------------------------------------
 
-# Ensure this fragment is run from an unelevated shell
-if ($null -eq ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator))
-{
-    Start-Process powershell -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`" -NonElevatedFragment" -NoNewWindow
+if (Test-IsElevated) {
+    # Ensure this fragment is run from an unelevated shell
+    $shell = "powershell"
+    if (Get-Command pwsh -ErrorAction SilentlyContinue)
+    {
+        $shell = "pwsh"
+    }
+
+    Start-Process $shell -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`""
     exit
 }
 
