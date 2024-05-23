@@ -185,6 +185,7 @@ GetDEFAULTConf(){
     keyMap["0"] := "{F10}"
     keyMap["-"] := "{F11}"
     keyMap["="] := "{F12}"
+    keyMap["o"] := "{AppsKey}"
     return map("DEFAULT",map("press_time",pressTime,"startup",startup),"KEY",keyMap)
 }
 

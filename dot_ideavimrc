@@ -120,7 +120,7 @@ nmap <Leader>rt <Action>(RunClass)
 nmap <Leader>dt <Action>(DebugClass)
 
 " Editor content selection
-nnoremap <C-A> gg<S-v>G
+" nnoremap <C-A> gg<S-v>G
 
 " Clear highlight on pressing ESC
 nnoremap <esc> :noh<return><esc>
