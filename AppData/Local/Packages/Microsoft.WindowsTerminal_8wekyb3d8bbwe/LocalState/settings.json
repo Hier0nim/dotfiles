@@ -85,8 +85,11 @@
     "profiles": {
         "defaults": {
             "colorScheme": "One Half Dark",
+            "experimental.retroTerminalEffect": false,
             "font": {
-                "face": "JetBrainsMono Nerd Font"
+                "face": "JetBrainsMono NF",
+                "size": 14.0,
+                "weight": "medium"
             },
             "opacity": 100,
             "padding": "8",

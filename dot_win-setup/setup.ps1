@@ -267,7 +267,7 @@ $tasks = @(
     @{Name="GlazeWM"; Description="Runs GlazeWM at user login"; Path="$env:USERPROFILE\AppData\Local\Microsoft\WinGet\Packages\glzr-io.glazewm_Microsoft.Winget.Source_8wekyb3d8bbwe\glazewm.exe"; Args=""},
     @{Name="Throttlestop"; Description="Runs ThrottleStop at user login"; Path="C:\ProgramData\chocolatey\lib\throttlestop\tools\throttlestop\ThrottleStop.exe"; Args=""},
     @{Name="FlowLauncher"; Description="Runs FlowLauncher at user login"; Path="$env:USERPROFILE\AppData\Local\FlowLauncher\Flow.Launcher.exe"; Args=""},
-    @{Name="SpaceFn"; Description="Runs SpaceFn at user login"; Path="$env:USERPROFILE\AppData\Local\Programs\AutoHotkey\v2\AutoHotkey64.exe"; Args="$env:USERPROFILE\.win-setup\SpaceFn.ahk"}
+    @{Name="SpaceFn"; Description="Runs SpaceFn at user login"; Path="$env:USERPROFILE\AppData\Local\Programs\AutoHotkey\v2.0.12\AutoHotkey64.exe"; Args="$env:USERPROFILE\.win-setup\SpaceFn.ahk"}
 )
 
 foreach ($task in $tasks)
@@ -284,7 +284,7 @@ if (Get-Command pwsh -ErrorAction SilentlyContinue)
 {
     $shell = "pwsh"
 }
-Start-Process -NoNewWindow -FilePath $shell -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$env:USERPROFILE\.win-setup\setup_unelevated.ps1`""
+Start-Process -NoNewWindow -FilePath $shell -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$env:USERPROFILE\.win-setup\setup_unelevated.ps1`"" -Wait
 
 # ---------------------------------------------------------------------------------------------
 # Ask for restart confirmation

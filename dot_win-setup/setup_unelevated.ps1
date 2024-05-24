@@ -5,14 +5,11 @@
 $scoopPackagesFile = "$env:USERPROFILE\.win-setup\scoop.config"
 if (Test-Path $scoopPackagesFile)
 {
+    Write-Host "Installing scoop packages" -ForegroundColor Green
     [xml]$scoopXml = Get-Content $scoopPackagesFile
-    $installedPackages = scoop list | Select-String -Pattern 'Name'
     foreach ($package in $scoopXml.packages.package)
     {
-        if ($null -eq ($installedPackages -match $package.id))
-        {
-            scoop install $package.id
-        }
+        scoop install $package.id
     }
 } else
 {
