@@ -10,15 +10,15 @@
             "keys": "ctrl+c"
         },
         {
+            "command": "paste",
+            "keys": "ctrl+v"
+        },
+        {
             "command": {
                 "action": "moveFocus",
                 "direction": "up"
             },
             "keys": "ctrl+alt+k"
-        },
-        {
-            "command": "paste",
-            "keys": "ctrl+v"
         },
         {
             "command": {
@@ -35,16 +35,16 @@
         {
             "command": {
                 "action": "moveFocus",
-                "direction": "left"
+                "direction": "right"
             },
-            "keys": "ctrl+alt+h"
+            "keys": "ctrl+alt+l"
         },
         {
             "command": {
                 "action": "moveFocus",
-                "direction": "right"
+                "direction": "left"
             },
-            "keys": "ctrl+alt+l"
+            "keys": "ctrl+alt+h"
         },
         {
             "command": {
@@ -87,12 +87,14 @@
             "colorScheme": "One Half Dark",
             "experimental.retroTerminalEffect": false,
             "font": {
+                "cellHeight": "1.2",
                 "face": "JetBrainsMono NF",
                 "size": 14.0,
                 "weight": "medium"
             },
             "opacity": 100,
-            "padding": "8",
+            "padding": "8, 8, 4, 0",
+            "scrollbarState": "hidden",
             "useAtlasEngine": true
         },
         "list": [
