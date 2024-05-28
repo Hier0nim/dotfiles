@@ -1,3 +1,32 @@
+# Palette catppuccin macchiato
+rosewater: &rosewater "#f4dbd6"
+flamingo: &flamingo "#f0c6c6"
+pink: &pink "#f5bde6"
+mauve: &mauve "#c6a0f6"
+red: &red "#ed8796"
+maroon: &maroon "#ee99a0"
+peach: &peach "#f5a97f"
+yellow: &yellow "#eed49f"
+green: &green "#a6da95"
+teal: &teal "#8bd5ca"
+sky: &sky "#91d7e3"
+sapphire: &sapphire "#7dc4e4"
+blue: &blue "#8aadf4"
+lavender: &lavender "#b7bdf8"
+text: &text "#cad3f5"
+subtext1: &subtext1 "#b8c0e0"
+subtext0: &subtext0 "#a5adcb"
+overlay2: &overlay2 "#939ab7"
+overlay1: &overlay1 "#8087a2"
+overlay0: &overlay0 "#6e738d"
+surface2: &surface2 "#5b6078"
+surface1: &surface1 "#494d64"
+surface0: &surface0 "#363a4f"
+base: &base "#24273a"
+mantle: &mantle "#1e2030"
+crust: &crust "#24283b" #181926"
+
+# General settings
 general:
   # Whether to automatically focus windows underneath the cursor.
   focus_follows_cursor: false
@@ -32,105 +61,212 @@ gaps:
 focus_borders:
   active:
     enabled: true
-    color: "#C4006B"
-
+    color: *lavender
 
   inactive:
     enabled: false
   color: *overlay0
 
 bar:
-  height: "24px"
+  height: "26px"
   position: "top"
   opacity: 1.0
-  background: "#20242cc4"
-  foreground: "#ffffff"
+  background: "transparent"
+  foreground: *mauve
   font_family: "JetBrainsMono Nerd Font"
   font_size: "12px"
-  padding: "4px 6px"
-  offset_x: "0"
-  offset_y: "0"
-  border_radius: "0"
+  padding: "0px 0px 0px 6px"
+  offset_x: "10"
+  offset_y: "5"
+
   components_left:
-    - type: "window title"
-      foreground: *text
+    - type: "workspaces"
+      focused_workspace_background: "transparent" #"#ffffff33" # *mauve
+      focused_workspace_foreground: "#3fe86c" # *crust #red
+      displayed_workspace_background: "transparent" #*yellow # *surface0 #"#00000033"
+      default_workspace_background: "transparent"
+      background: *crust
+      padding: "0 4 0 4"
+      margin: "0 3 0 -5"
+      border_width: "5 0"
+      border_radius: "5"
+      border_color: *crust
+
+    - type: text
+      text: ""
+      padding: "0 4 0 4"
+      margin: "0 0 0 3"
+      border_radius: "5"
+      border_width: "0 0 0 6"
+      background: *crust
+      border_color: *crust
+
+    - type: text file # Song title underlined section
+      file_path: "C:/Users/hieronim/.glaze-wm/scripts/song_info_1.txt"
+      padding: 3 0 0 0
+      background: *crust
+      foreground: *blue
+      border_width: 0 0 2 0
+      border_color: *blue
+
+    - type: text file # Song title non-underlined section
+      file_path: "C:/Users/hieronim/.glaze-wm/scripts/song_info_2.txt"
+      padding: 3 0 0 0
+      background: *crust
+      foreground: *blue
+      border_width: 0 0 2 0
+      border_color: *crust
+
+    - type: text file # Play/pause icon
+      file_path: "C:/Users/hieronim/.glaze-wm/scripts/song_playing.txt"
+      font_size: 16
+      padding: 0 4 0 3
+      margin: "0 3 0 0"
+      border_width: "0 6 0 0"
+      border_radius: "5"
+      background: *crust
+      foreground: *blue
+      border_color: *crust
+
+    - type: "memory"
+      label: "<attr fs='14'> </attr>{percent_usage}%" #\ue266
+      refresh_interval_ms: 5000
+      background: *crust
+      foreground: *green
+      padding: 0 4 0 4
+      margin: "0 3 0 3"
+      border_radius: "5"
+      border_color: *crust
+      border_width: "5"
+
+    - type: "cpu"
+      label: "<attr fs='14'> </attr>{percent_usage}%"
+      refresh_interval_ms: 5000
+      background: *crust
+      foreground: *sapphire
+      padding: 0 3 0 4
+      margin: "0 0 0 3"
+      border_color: *crust
+      border_radius: "5"
+      border_width: "5"
 
   components_center:
-    - type: "workspaces"
-      focused_workspace_background: transparent
-      focused_workspace_foreground: *text
-      focused_workspace_border_color: transparent
-
-      displayed_workspace_background: transparent
-      displayed_workspace_foreground: *text
-      displayed_workspace_border_color: transparent
-
-      default_workspace_background: transparent
-      default_workspace_foreground: *overlay0
-      default_workspace_border_color: transparent
+    - type:
+        "clock"
+        # Documentation on formatting date/time string:
+        # https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings
+      time_formatting: "HH:mm"
+      background: *crust
+      foreground: *mauve
+      padding: 0 3 0 3
+      border_color: *crust
+      border_radius: "5"
+      border_width: "5"
+      label: "<attr fs='14'> </attr>{formatted_time}"
 
   components_right:
-
-    - type: "music"
-      label_not_playing: ""
-      label_playing: " {song_title} - {artist_name}"
-      label_paused: " {song_title} - {artist_name}"
-      max_title_length: 20
-      max_artist_length: 20
-      background: transparent
-      foreground: *text
-      margin: 0 8
+    - type: "system tray"
+      label_expand_text: ""
+      label_collapse_text: " "
+      background: *crust
+      foreground: *pink
+      padding: "0 4 0 4"
+      margin: "0 3 0 0"
+      border_color: *crust
+      border_radius: "5"
+      border_width: "5"
 
     - type: "tiling direction"
-      label_horizontal: "<attr ff='Segoe Fluent Icons' fg='#a6e3a1'></attr>"
-      label_vertical: "<attr ff='Segoe Fluent Icons' fg='#a6e3a1'></attr>"
-      background: transparent
-      foreground: *text
-      margin: 0 8 
+      label_horizontal: "󰯌" #⮂ 󰚉 ⬓ 󰯌
+      label_vertical: "󰯋" #⮁ 󰚈 󱂪 󰯋
+      background: *crust #"#ffffff33"
+      foreground: *pink
+      padding: "0 4 0 4"
+      margin: "0 3 0 3"
+      border_width: "5"
+      border_radius: "5"
+      font_size: 20
+      border_color: *crust
 
     - type: "battery"
-      foreground: *text
-      margin: 0 8
-      label_draining   : "<attr ff='Segoe Fluent Icons' fg='#fab387'> </attr>{battery_level}%"
-      label_power_saver: "<attr ff='Segoe Fluent Icons' fg='#fab387'> </attr>{battery_level}%"
-      label_charging   : "<attr ff='Segoe Fluent Icons' fg='#fab387'> </attr>{battery_level}%"
+      label_draining: "<attr fs='16'>󰂂</attr> {battery_level}%"
+      label_power_saver: "<attr fs='16'>󰂂</attr> {battery_level}%"
+      label_charging: "<attr fs='16'>󰂋 </attr>{battery_level}%"
+      background: *crust
+      foreground: *teal
+      padding: "0 4 0 4"
+      margin: "0 3 0 3"
+      border_color: *crust
+      border_radius: "5"
+      border_width: "5"
 
     - type: "network"
-      foreground: *text
-      margin: 0 8
-      label_no_internet: "<attr ff='Segoe Fluent Icons' fg='#fab387'> </attr>Dsc"
-      label_ethernet: "<attr ff='Segoe Fluent Icons' fg='#fab387'> </attr>Eth"
-      label_wifi_strength0: "<attr ff='Segoe Fluent Icons' fg='#fab387'> </attr>0%"
-      label_wifi_strength25: "<attr ff='Segoe Fluent Icons' fg='#fab387'> </attr>25%"
-      label_wifi_strength50: "<attr ff='Segoe Fluent Icons' fg='#fab387'> </attr>50%"
-      label_wifi_strength75: "<attr ff='Segoe Fluent Icons' fg='#fab387'> </attr>75%"
-      label_wifi_strength100: "<attr ff='Segoe Fluent Icons' fg='#fab387'> </attr>100%"
-      border_color: *peach
+      label_no_internet: " "
+      label_ethernet: "󰈁"
+      label_wifi_strength_0: "󰤭 "
+      label_wifi_strength_25: "󰤟 "
+      label_wifi_strength_50: "󰤢 "
+      label_wifi_strength_75: "󰤥 "
+      label_wifi_strength_100: "󰤨 "
+      background: *crust
+      foreground: *subtext1
+      padding: "0 4 0 4"
+      margin: "0 3 0 3"
+      border_color: *crust
+      border_radius: "5"
+      border_width: "5"
+      font_size: 16
 
     - type: "volume"
-      foreground: *text
-      margin: 0 8
-      label       : "<attr ff='Segoe Fluent Icons' fg='#fab387'> </attr>{volume_level}%"
-      label_low   : "<attr ff='Segoe Fluent Icons' fg='#fab387'> </attr>{volume_level}%"
-      label_medium: "<attr ff='Segoe Fluent Icons' fg='#fab387'> </attr>{volume_level}%"
-      label_high  : "<attr ff='Segoe Fluent Icons' fg='#fab387'> </attr>{volume_level}%"
-      label_mute  : "<attr ff='Segoe Fluent Icons' fg='#fab387'> </attr>{volume_level}%"
+      label_low: "<attr fs='16'>🔊</attr>{volume_level}%"
+      label_medium: "<attr fs='16'>🔊</attr>{volume_level}%"
+      label_high: "<attr fs='16'>🔊</attr>{volume_level}%"
+      label_mute: "<attr fs='16'>🔊</attr>{volume_level}%"
+      background: *crust #"#ffffff33"
+      foreground: *flamingo
+      padding: "0 4 0 4"
+      margin: "0 3 0 3"
+      border_width: "5"
+      border_radius: "5"
+      border_color: *crust
+
+    - type: "weather"
+      latitude: 50.260
+      longitude: 19.013
+      label: "{temperature_celsius}°C"
+      label_sun: "<attr fs='16'>☀️ </attr>{temperature_celsius}°C"
+      label_moon: "<attr fs='16'>🌙 </attr>{temperature_celsius}°C"
+      label_cloud_moon: "<attr fs='16'>🌙☁️ </attr>{temperature_celsius}°C"
+      label_cloud_sun: "<attr fs='16'>⛅ </attr>{temperature_celsius}°C"
+      label_cloud_moon_rain: "<attr fs='16'>🌙🌧️ </attr>{temperature_celsius}°C"
+      label_cloud_sun_rain: "<attr fs='16'>🌦️ </attr>{temperature_celsius}°C"
+      label_cloud_rain: "<attr fs='16'>🌧️ </attr>{temperature_celsius}°C"
+      label_snow_flake: "<attr fs='16'>❄️ </attr>{temperature_celsius}°C"
+      label_thunderstorm: "<attr fs='16'>⚡ </attr>{temperature_celsius}°C"
+      label_cloud: "<attr fs='16'>☁️ </attr>{temperature_celsius}°C"
+      background: *crust #"#ffffff33"
+      foreground: *rosewater
+      padding: "0 4 0 4"
+      margin: "0 3 0 3"
+      border_width: "5"
+      border_radius: "5"
+      border_color: *crust
 
     - type: "clock"
-      foreground: *text
-      padding: 0 8
-      label: "<attr ff='Segoe Fluent Icons' fg='#89b4fa'> </attr>{formatted_time}"
-      time_formatting: "MMM dd"
-
-    - type: "clock"
-      foreground: *text
-      padding: 0 8
-      label: "<attr ff='Segoe Fluent Icons' fg='#89b4fa'> </attr>{formatted_time}"
-      time_formatting: "HH:mm"
+      # Documentation on formatting date/time string:
+      # https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings
+      time_formatting: "dd/MM/yyyy"
+      background: *crust
+      foreground: *peach
+      padding: "0 4 0 4"
+      margin: "0 3 0 3"
+      border_color: *crust
+      border_radius: "5"
+      border_width: "5"
+      label: "<attr fs='16'>󰃵 </attr>{formatted_time}"
 
 workspaces:
   - name: "1"
-    display_name: "main"
     bind_to_monitor: 1
     keep_alive: true
   - name: "2"
@@ -148,9 +284,11 @@ workspaces:
   - name: "8"
     bind_to_monitor: 2
   - name: "9"
+    bind_to_monitor: 2
+  - name: "20"
     display_name: "chat"
     bind_to_monitor: 2
-  - name: "10"
+  - name: "21"
     display_name: "🎶"
     bind_to_monitor: 2
 
@@ -175,13 +313,13 @@ window_rules:
   - command: "move to workspace 1"
     match_process_name: "JetBrains Rider"
 
-  - command: "move to workspace 9"
+  - command: "move to workspace 20"
     match_process_name: "/ms-teams|Discord/"
 
-  - command: "move to workspace 9"
+  - command: "move to workspace 20"
     match_process_name: "OUTLOOK"
 
-  - command: "move to workspace 10"
+  - command: "move to workspace 21"
     match_process_name: "Spotify"
 
   - command: "resize borders 0px -7px -7px -7px"
@@ -263,18 +401,9 @@ keybindings:
   - command: "close"
     binding: "Alt+Shift+Q"
 
-  # Kill GlazeWM process safely.
-  - command: "exit wm"
-    binding: "Alt+Shift+E"
-
   # Re-evaluate configuration file.
   - command: "reload config"
     binding: "Alt+Shift+R"
-
-  # Launch CMD terminal (alternatively `exec wt` or `exec %ProgramFiles%/Git/git-bash.exe`
-  # to start Windows Terminal and Git Bash respectively.
-  - command: "exec %SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -nologo"
-    binding: "Alt+Shift+Enter"
 
   # Focus the workspace that last had focus.
   - command: "focus workspace recent"
@@ -282,9 +411,9 @@ keybindings:
 
   # Focus the next/previous workspace defined in `workspaces` config.
   - command: "focus workspace next"
-    binding: "Alt+T"
+    binding: "Alt+N"
   - command: "focus workspace prev"
-    binding: "Alt+Shift+T"
+    binding: "Alt+Shift+N"
 
   # Change focus to a workspace defined in `workspaces` config.
   - command: "focus workspace 1"
@@ -305,8 +434,11 @@ keybindings:
     binding: "Alt+8"
   - command: "focus workspace 9"
     binding: "Alt+9"
-  - command: "focus workspace 10"
-    binding: "Alt+0"
+
+  - command: "focus workspace 20"
+    binding: "Alt+E+1"
+  - command: "focus workspace 21"
+    binding: "Alt+E+2"
 
   # Move focused workspace to a monitor in a given direction.
   - command: "move workspace left"
@@ -337,35 +469,7 @@ keybindings:
     binding: "Alt+Shift+8"
   - commands: ["move to workspace 9", "focus workspace 9"]
     binding: "Alt+Shift+9"
-  - commands: ["move to workspace 10", "focus workspace 10"]
-    binding: "Alt+Shift+0"
-
-#################################################################################################
-
-# Palette
-rosewater: &rosewater '#f5e0dc'
-flamingo : &flamingo '#f2cdcd'
-pink     : &pink '#f5c2e7'
-mauve    : &mauve '#cba6f7'
-red      : &red '#f38ba8'
-maroon   : &maroon '#eba0ac'
-peach    : &peach '#fab387'
-yellow   : &yellow '#f9e2af'
-green    : &green '#a6e3a1'
-teal     : &teal '#94e2d5'
-sky      : &sky '#89dceb'
-sapphire : &sapphire '#74c7ec'
-blue     : &blue '#89b4fa'
-lavender : &lavender '#b4befe'
-text     : &text '#cdd6f4'
-subtext1 : &subtext1 '#bac2de'
-subtext0 : &subtext0 '#a6adc8'
-overlay2 : &overlay2 '#9399b2'
-overlay1 : &overlay1 '#7f849c'
-overlay0 : &overlay0 '#6c7086'
-surface2 : &surface2 '#585b70'
-surface1 : &surface1 '#45475a'
-surface0 : &surface0 '#313244'
-base     : &base '#1e1e2e'
-mantle   : &mantle '#181825'
-crust    : &crust '#11111b'
+  - commands: ["move to workspace 20", "focus workspace 20"]
+    binding: "Alt+Shift+E+1"
+  - commands: ["move to workspace 21", "focus workspace 21"]
+    binding: "Alt+Shift+E+2"

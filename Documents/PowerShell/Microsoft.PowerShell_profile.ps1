@@ -56,7 +56,16 @@ Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory
 
 Set-Alias -Name which -Value Get-Command
 
-function Invoke-NvimDBUI {
-    nvim -c "DBUI"
+function Invoke-NvimDBUI
+{
+  nvim -c "DBUI"
 }
 Set-Alias -Name dbui -Value Invoke-NvimDBUI
+
+function Invoke-Glaze
+{
+  sudo "$env:USERPROFILE\AppData\Local\Microsoft\WinGet\Packages\glzr-io.glazewm_Microsoft.Winget.Source_8wekyb3d8bbwe\glazewm.exe"
+  "$env:USERPROFILE\.glaze-wm\scripts\init.exe"
+}
+
+Set-Alias -Name glaze -Value Invoke-Glaze
