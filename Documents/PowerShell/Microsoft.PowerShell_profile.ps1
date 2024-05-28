@@ -55,3 +55,8 @@ Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory
 # ---------------------------------------------------------------------------------------------
 
 Set-Alias -Name which -Value Get-Command
+
+function Invoke-NvimDBUI {
+    nvim -c "DBUI"
+}
+Set-Alias -Name dbui -Value Invoke-NvimDBUI
