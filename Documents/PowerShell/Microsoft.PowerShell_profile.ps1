@@ -65,7 +65,14 @@ Set-Alias -Name dbui -Value Invoke-NvimDBUI
 function Invoke-Glaze
 {
   sudo "$env:USERPROFILE\AppData\Local\Microsoft\WinGet\Packages\glzr-io.glazewm_Microsoft.Winget.Source_8wekyb3d8bbwe\glazewm.exe"
-  "$env:USERPROFILE\.glaze-wm\scripts\init.exe"
+  & "$env:USERPROFILE\.glaze-wm\scripts\init.exe"
 }
 
 Set-Alias -Name glaze -Value Invoke-Glaze
+
+function Invoke-SpaceFn
+{
+  sudo "$env:USERPROFILE\.win-setup\SpaceFn.ahk"
+}
+
+Set-Alias -Name spacefn -Value Invoke-SpaceFn
