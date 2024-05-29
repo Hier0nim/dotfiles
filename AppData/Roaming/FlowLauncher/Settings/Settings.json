@@ -13,19 +13,14 @@
   "QueryBoxFontWeight": "Normal",
   "QueryBoxFontStretch": "Normal",
   "ResultFont": "Microsoft Sans Serif",
-  "ResultFontStyle": null,
-  "ResultFontWeight": null,
-  "ResultFontStretch": null,
   "UseGlyphIcons": true,
   "UseAnimation": true,
   "UseSound": false,
   "UseClock": false,
   "UseDate": false,
-  "TimeFormat": "HH:mm:ss",
-  "DateFormat": "MM\u0027/\u0027dd ddd",
   "FirstLaunch": false,
   "SettingWindowState": 0,
-  "CustomExplorerIndex": 4,
+  "CustomExplorerIndex": 2,
   "CustomExplorerList": [
     {
       "Name": "Explorer",
@@ -35,29 +30,15 @@
       "Editable": false
     },
     {
-      "Name": "Total Commander",
-      "Path": "C:\\Program Files\\totalcmd\\TOTALCMD64.exe",
-      "FileArgument": "/O /A /S /T \u0022%f\u0022",
-      "DirectoryArgument": "/O /A /S /T \u0022%d\u0022",
-      "Editable": true
-    },
-    {
-      "Name": "Directory Opus",
-      "Path": "C:\\Program Files\\GPSoftware\\Directory Opus\\dopusrt.exe",
-      "FileArgument": "/cmd Go \u0022%f\u0022 NEW",
-      "DirectoryArgument": "/cmd Go \u0022%d\u0022 NEW",
-      "Editable": true
-    },
-    {
-      "Name": "Files",
-      "Path": "Files",
-      "FileArgument": "-select \u0022%f\u0022",
-      "DirectoryArgument": "-select \u0022%d\u0022",
-      "Editable": true
-    },
-    {
       "Name": "vifm",
       "Path": "C:\\ProgramData\\chocolatey\\bin\\vifm.exe",
+      "FileArgument": "\u0022%d\u0022",
+      "DirectoryArgument": "\u0022%d\u0022",
+      "Editable": true
+    },
+    {
+      "Name": "yazi",
+      "Path": "%userprofile%:\\scoop\\shims\\yazi.exe",
       "FileArgument": "\u0022%d\u0022",
       "DirectoryArgument": "\u0022%d\u0022",
       "Editable": true
@@ -72,30 +53,6 @@
       "EnablePrivate": false,
       "OpenInTab": true,
       "Editable": false
-    },
-    {
-      "Name": "Google Chrome",
-      "Path": "chrome",
-      "PrivateArg": "-incognito",
-      "EnablePrivate": false,
-      "OpenInTab": true,
-      "Editable": false
-    },
-    {
-      "Name": "Mozilla Firefox",
-      "Path": "firefox",
-      "PrivateArg": "-private",
-      "EnablePrivate": false,
-      "OpenInTab": true,
-      "Editable": false
-    },
-    {
-      "Name": "MS Edge",
-      "Path": "msedge",
-      "PrivateArg": "-inPrivate",
-      "EnablePrivate": false,
-      "OpenInTab": true,
-      "Editable": false
     }
   ],
   "ShouldUsePinyin": false,
@@ -106,8 +63,6 @@
   "CustomWindowLeft": 0,
   "CustomWindowTop": 0,
   "MaxResultsToShow": 5,
-  "CustomPluginHotkeys": [],
-  "CustomShortcuts": [],
   "DontPromptUpdateMsg": false,
   "EnableUpdateLog": false,
   "StartFlowLauncherOnSystemStartup": true,
@@ -283,16 +238,6 @@
         "Version": "3.1.0",
         "ActionKeywords": [
           "*"
-        ],
-        "Priority": 0,
-        "Disabled": false
-      },
-      "SY91U1N7H9D0X1DTZ8IOP4YV43KT7C5M": {
-        "ID": "SY91U1N7H9D0X1DTZ8IOP4YV43KT7C5M",
-        "Name": "SpotifyPremium",
-        "Version": "1.1.5",
-        "ActionKeywords": [
-          "sp"
         ],
         "Priority": 0,
         "Disabled": false
