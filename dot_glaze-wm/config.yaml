@@ -82,7 +82,7 @@ main_bar: &main_bar
   components_left:
     - type: text
       text: ""
-      padding: "0 4 0 4"
+      padding: "0 0 0 4"
       margin: "0 0 0 -5"
       border_radius: "5"
       border_width: "0 0 0 6"
@@ -108,7 +108,7 @@ main_bar: &main_bar
     - type: text file # Play/pause icon
       file_path: "C:/Users/hieronim/.glaze-wm/scripts/song_playing.txt"
       font_size: 16
-      padding: 0 4 0 3
+      padding: 0 4 0 0
       margin: "0 3 0 0"
       border_width: "0 6 0 0"
       border_radius: "5"
