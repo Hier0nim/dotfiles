@@ -67,7 +67,7 @@ focus_borders:
     enabled: false
   color: *overlay0
 
-bar:
+main_bar: &main_bar
   height: "26px"
   position: "top"
   opacity: 1.0
@@ -80,22 +80,10 @@ bar:
   offset_y: "5"
 
   components_left:
-    - type: "workspaces"
-      focused_workspace_background: "transparent" #"#ffffff33" # *mauve
-      focused_workspace_foreground: "#3fe86c" # *crust #red
-      displayed_workspace_background: "transparent" #*yellow # *surface0 #"#00000033"
-      default_workspace_background: "transparent"
-      background: *crust
-      padding: "0 4 0 4"
-      margin: "0 3 0 -5"
-      border_width: "5 0"
-      border_radius: "5"
-      border_color: *crust
-
     - type: text
       text: ""
       padding: "0 4 0 4"
-      margin: "0 0 0 3"
+      margin: "0 0 0 -5"
       border_radius: "5"
       border_width: "0 0 0 6"
       background: *crust
@@ -151,18 +139,16 @@ bar:
       border_width: "5"
 
   components_center:
-    - type:
-        "clock"
-        # Documentation on formatting date/time string:
-        # https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings
-      time_formatting: "HH:mm"
+    - type: "workspaces"
+      focused_workspace_background: "transparent" #"#ffffff33" # *mauve
+      focused_workspace_foreground: "#3fe86c" # *crust #red
+      displayed_workspace_background: "transparent" #*yellow # *surface0 #"#00000033"
+      default_workspace_background: "transparent"
       background: *crust
-      foreground: *mauve
-      padding: 0 3 0 3
-      border_color: *crust
+      padding: "0 4 0 4"
+      border_width: "5 0"
       border_radius: "5"
-      border_width: "5"
-      label: "<attr fs='14'> </attr>{formatted_time}"
+      border_color: *crust
 
   components_right:
     - type: "system tray"
@@ -188,40 +174,40 @@ bar:
       font_size: 20
       border_color: *crust
 
-    - type: "battery"
-      label_draining: "<attr fs='16'>󰂂</attr> {battery_level}%"
-      label_power_saver: "<attr fs='16'>󰂂</attr> {battery_level}%"
-      label_charging: "<attr fs='16'>󰂋 </attr>{battery_level}%"
-      background: *crust
-      foreground: *teal
-      padding: "0 4 0 4"
-      margin: "0 3 0 3"
-      border_color: *crust
-      border_radius: "5"
-      border_width: "5"
-
-    - type: "network"
-      label_no_internet: " "
-      label_ethernet: "󰈁"
-      label_wifi_strength_0: "󰤭 "
-      label_wifi_strength_25: "󰤟 "
-      label_wifi_strength_50: "󰤢 "
-      label_wifi_strength_75: "󰤥 "
-      label_wifi_strength_100: "󰤨 "
-      background: *crust
-      foreground: *subtext1
-      padding: "0 4 0 4"
-      margin: "0 3 0 3"
-      border_color: *crust
-      border_radius: "5"
-      border_width: "5"
-      font_size: 16
+    # - type: "battery"
+    #   label_draining: "<attr fs='14'>󰂂</attr> {battery_level}%"
+    #   label_power_saver: "<attr fs='14'>󰂂</attr> {battery_level}%"
+    #   label_charging: "<attr fs='14'>󰂋 </attr>{battery_level}%"
+    #   background: *crust
+    #   foreground: *teal
+    #   padding: "0 4 0 4"
+    #   margin: "0 3 0 3"
+    #   border_color: *crust
+    #   border_radius: "5"
+    #   border_width: "5"
+    #
+    # - type: "network"
+    #   label_no_internet: " "
+    #   label_ethernet: "󰈁"
+    #   label_wifi_strength_0: "󰤭 "
+    #   label_wifi_strength_25: "󰤟 "
+    #   label_wifi_strength_50: "󰤢 "
+    #   label_wifi_strength_75: "󰤥 "
+    #   label_wifi_strength_100: "󰤨 "
+    #   background: *crust
+    #   foreground: *subtext1
+    #   padding: "0 4 0 4"
+    #   margin: "0 3 0 3"
+    #   border_color: *crust
+    #   border_radius: "5"
+    #   border_width: "5"
+    #   font_size: 14
 
     - type: "volume"
-      label_low: "<attr fs='16'>🔊</attr>{volume_level}%"
-      label_medium: "<attr fs='16'>🔊</attr>{volume_level}%"
-      label_high: "<attr fs='16'>🔊</attr>{volume_level}%"
-      label_mute: "<attr fs='16'>🔊</attr>{volume_level}%"
+      label_low: "<attr fs='14'>🔊</attr>{volume_level}%"
+      label_medium: "<attr fs='14'>🔊</attr>{volume_level}%"
+      label_high: "<attr fs='14'>🔊</attr>{volume_level}%"
+      label_mute: "<attr fs='14'>🔊</attr>{volume_level}%"
       background: *crust #"#ffffff33"
       foreground: *flamingo
       padding: "0 4 0 4"
@@ -234,16 +220,16 @@ bar:
       latitude: 50.260
       longitude: 19.013
       label: "{temperature_celsius}°C"
-      label_sun: "<attr fs='16'>☀️ </attr>{temperature_celsius}°C"
-      label_moon: "<attr fs='16'>🌙 </attr>{temperature_celsius}°C"
-      label_cloud_moon: "<attr fs='16'>🌙☁️ </attr>{temperature_celsius}°C"
-      label_cloud_sun: "<attr fs='16'>⛅ </attr>{temperature_celsius}°C"
-      label_cloud_moon_rain: "<attr fs='16'>🌙🌧️ </attr>{temperature_celsius}°C"
-      label_cloud_sun_rain: "<attr fs='16'>🌦️ </attr>{temperature_celsius}°C"
-      label_cloud_rain: "<attr fs='16'>🌧️ </attr>{temperature_celsius}°C"
-      label_snow_flake: "<attr fs='16'>❄️ </attr>{temperature_celsius}°C"
-      label_thunderstorm: "<attr fs='16'>⚡ </attr>{temperature_celsius}°C"
-      label_cloud: "<attr fs='16'>☁️ </attr>{temperature_celsius}°C"
+      label_sun: "<attr fs='14'>☀️ </attr>{temperature_celsius}°C"
+      label_moon: "<attr fs='14'>🌙 </attr>{temperature_celsius}°C"
+      label_cloud_moon: "<attr fs='14'>🌙☁️ </attr>{temperature_celsius}°C"
+      label_cloud_sun: "<attr fs='14'>⛅ </attr>{temperature_celsius}°C"
+      label_cloud_moon_rain: "<attr fs='14'>🌙🌧️ </attr>{temperature_celsius}°C"
+      label_cloud_sun_rain: "<attr fs='14'>🌦️ </attr>{temperature_celsius}°C"
+      label_cloud_rain: "<attr fs='14'>🌧️ </attr>{temperature_celsius}°C"
+      label_snow_flake: "<attr fs='14'>❄️ </attr>{temperature_celsius}°C"
+      label_thunderstorm: "<attr fs='14'>⚡ </attr>{temperature_celsius}°C"
+      label_cloud: "<attr fs='14'>☁️ </attr>{temperature_celsius}°C"
       background: *crust #"#ffffff33"
       foreground: *rosewater
       padding: "0 4 0 4"
@@ -251,6 +237,20 @@ bar:
       border_width: "5"
       border_radius: "5"
       border_color: *crust
+
+    - type:
+        "clock"
+        # Documentation on formatting date/time string:
+        # https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings
+      time_formatting: "HH:mm"
+      background: *crust
+      foreground: *mauve
+      padding: "0 4 0 4"
+      margin: "0 3 0 3"
+      border_color: *crust
+      border_radius: "5"
+      border_width: "5"
+      label: "<attr fs='14'> </attr>{formatted_time}"
 
     - type: "clock"
       # Documentation on formatting date/time string:
@@ -263,7 +263,43 @@ bar:
       border_color: *crust
       border_radius: "5"
       border_width: "5"
-      label: "<attr fs='16'>󰃵 </attr>{formatted_time}"
+      label: "<attr fs='14'>󰃵 </attr>{formatted_time}"
+
+secondary_bar: &secondary_bar
+  <<: *main_bar
+  components_left:
+
+  components_center:
+    - type: "workspaces"
+      focused_workspace_background: "transparent" #"#ffffff33" # *mauve
+      focused_workspace_foreground: "#3fe86c" # *crust #red
+      displayed_workspace_background: "transparent" #*yellow # *surface0 #"#00000033"
+      default_workspace_background: "transparent"
+      background: *crust
+      padding: "0 4 0 4"
+      margin: "0 3 0 -5"
+      border_width: "5 0"
+      border_radius: "5"
+      border_color: *crust
+
+  components_right:
+    - type: "tiling direction"
+      label_horizontal: "󰯌" #⮂ 󰚉 ⬓ 󰯌
+      label_vertical: "󰯋" #⮁ 󰚈 󱂪 󰯋
+      background: *crust #"#ffffff33"
+      foreground: *pink
+      padding: "0 4 0 4"
+      margin: "0 3 0 3"
+      border_width: "5"
+      border_radius: "5"
+      font_size: 20
+      border_color: *crust
+
+bars:
+  - bind_to_monitor: 1
+    <<: *main_bar
+  - bind_to_monitor: 2
+    <<: *secondary_bar
 
 workspaces:
   - name: "1"
