@@ -98,7 +98,13 @@ function RegisterStartupTask
 
         $trigger = New-ScheduledTaskTrigger -AtLogOn
         $Principal = New-ScheduledTaskPrincipal -UserId "$env:USERDOMAIN\$env:USERNAME" -LogonType Interactive -RunLevel Highest
-        $settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable
+        $settings = New-ScheduledTaskSettingsSet `
+            -AllowStartIfOnBatteries `
+            -DontStopIfGoingOnBatteries `
+            -StartWhenAvailable `
+            -RestartInterval (New-TimeSpan -Minutes 1) `
+            -RestartCount 3 `
+            -ExecutionTimeLimit (New-TimeSpan -Seconds 0)
 
         Register-ScheduledTask -TaskName $TaskName -Description $Description -Action $action -Trigger $trigger -Principal $principal -Settings $settings
 

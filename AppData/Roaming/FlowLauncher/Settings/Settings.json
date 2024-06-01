@@ -3,15 +3,11 @@
   "OpenResultModifiers": "Ctrl",
   "ColorScheme": "System",
   "ShowOpenResultHotkey": true,
-  "WindowSize": 580,
   "PreviewHotkey": "F1",
   "Language": "en",
   "Theme": "Win11System",
   "UseDropShadowEffect": false,
   "QueryBoxFont": "Microsoft Sans Serif",
-  "QueryBoxFontStyle": "Normal",
-  "QueryBoxFontWeight": "Normal",
-  "QueryBoxFontStretch": "Normal",
   "ResultFont": "Microsoft Sans Serif",
   "UseGlyphIcons": true,
   "UseAnimation": true,
@@ -19,8 +15,7 @@
   "UseClock": false,
   "UseDate": false,
   "FirstLaunch": false,
-  "SettingWindowState": 0,
-  "CustomExplorerIndex": 2,
+  "CustomExplorerIndex": 5,
   "CustomExplorerList": [
     {
       "Name": "Explorer",
@@ -28,6 +23,27 @@
       "FileArgument": "/select, \u0022%f\u0022",
       "DirectoryArgument": "\u0022%d\u0022",
       "Editable": false
+    },
+    {
+      "Name": "Total Commander",
+      "Path": "C:\\Program Files\\totalcmd\\TOTALCMD64.exe",
+      "FileArgument": "/O /A /S /T \u0022%f\u0022",
+      "DirectoryArgument": "/O /A /S /T \u0022%d\u0022",
+      "Editable": true
+    },
+    {
+      "Name": "Directory Opus",
+      "Path": "C:\\Program Files\\GPSoftware\\Directory Opus\\dopusrt.exe",
+      "FileArgument": "/cmd Go \u0022%f\u0022 NEW",
+      "DirectoryArgument": "/cmd Go \u0022%d\u0022 NEW",
+      "Editable": true
+    },
+    {
+      "Name": "Files",
+      "Path": "Files",
+      "FileArgument": "-select \u0022%f\u0022",
+      "DirectoryArgument": "-select \u0022%d\u0022",
+      "Editable": true
     },
     {
       "Name": "vifm",
@@ -53,34 +69,38 @@
       "EnablePrivate": false,
       "OpenInTab": true,
       "Editable": false
+    },
+    {
+      "Name": "Google Chrome",
+      "Path": "chrome",
+      "PrivateArg": "-incognito",
+      "EnablePrivate": false,
+      "OpenInTab": true,
+      "Editable": false
+    },
+    {
+      "Name": "Mozilla Firefox",
+      "Path": "firefox",
+      "PrivateArg": "-private",
+      "EnablePrivate": false,
+      "OpenInTab": true,
+      "Editable": false
+    },
+    {
+      "Name": "MS Edge",
+      "Path": "msedge",
+      "PrivateArg": "-inPrivate",
+      "EnablePrivate": false,
+      "OpenInTab": true,
+      "Editable": false
     }
   ],
-  "ShouldUsePinyin": false,
-  "AlwaysPreview": false,
-  "AlwaysStartEn": false,
-  "QuerySearchPrecision": "Regular",
-  "AutoUpdates": false,
-  "CustomWindowLeft": 0,
-  "CustomWindowTop": 0,
-  "MaxResultsToShow": 5,
-  "DontPromptUpdateMsg": false,
-  "EnableUpdateLog": false,
-  "StartFlowLauncherOnSystemStartup": true,
   "HideOnStartup": true,
-  "HideNotifyIcon": false,
+  "HideNotifyIcon": true,
   "LeaveCmdOpen": false,
   "HideWhenDeactivated": true,
   "SearchWindowScreen": "Focus",
   "SearchWindowAlign": "Center",
-  "CustomScreenNumber": 1,
-  "IgnoreHotkeysOnFullscreen": false,
-  "Proxy": {
-    "Enabled": false,
-    "Server": null,
-    "Port": 0,
-    "UserName": null,
-    "Password": null
-  },
   "LastQueryMode": "Empty",
   "AnimationSpeed": "Medium",
   "CustomAnimationLength": 360,
