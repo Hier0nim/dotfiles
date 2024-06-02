@@ -6,11 +6,17 @@ edit:
 cd:
     command: pwsh
     args:
-        - '-NoLogo'
+        - "-NoLogo"
 diff:
 merge:
     command: nvim
     args:
-        - '-d'
-        - '{{ .Destination }}'
-        - '{{ .Source }}'
+        - "-d"
+        - "{{ .Destination }}"
+        - "{{ .Source }}"
+interpreters:
+    ps1:
+        command: pwsh.exe
+        args:
+            - "-NoLogo"
+            - "-NoProfile"
