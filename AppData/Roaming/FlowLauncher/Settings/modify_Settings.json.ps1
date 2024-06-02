@@ -347,29 +347,10 @@ try
   exit 1
 }
 
-# Path to settings base JSON file
-$settingsBasePath = "$env:USERPROFILE\.local\share\chezmoi\AppData\Roaming\FlowLauncher\Settings\Settings_base.json"
-
-if (-Not (Test-Path $settingsBasePath))
-{
-  exit 1
-}
-
-# Read JSON from Settings_base.json file
+# Merge JSON input with predefined base configuration
 try
 {
-  $settingsBase = Get-Content -Raw -Path $settingsBasePath | ConvertFrom-Json
-} catch
-{
-  exit 1
-}
-
-
-# Merge JSON input with settings base and predefined base configuration
-try
-{
-  $mergedJson = Merge-Json -Object1 $jsonInput -Object2 $settingsBase
-  $finalMergedJson = Merge-Json -Object1 $baseConfigJson -Object2 $mergedJson
+  $finalMergedJson = Merge-Json -Object1 $jsonInput -Object2 $baseConfigJson
 } catch
 {
   exit 1
