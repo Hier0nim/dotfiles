@@ -269,7 +269,7 @@ if ($null -eq (CheckCommand scoop))
 # ---------------------------------------------------------------------------------------------
 
 $tasks = @(
-    @{Name="ButteryTaskBar"; Description="Runs Buttery TaskBar at user login"; Path="$env:USERPROFILE\.win-setup\buttery-taskbar.exe"; Args=""},
+    @{Name="ButteryTaskBar"; Description="Runs Buttery TaskBar at user login"; Path="$env:USERPROFILE\scoop\shims\buttery-taskbar.exe"; Args=""},
     @{Name="GlazeWM"; Description="Runs GlazeWM at user login"; Path="$env:USERPROFILE\AppData\Local\Microsoft\WinGet\Packages\glzr-io.glazewm_Microsoft.Winget.Source_8wekyb3d8bbwe\glazewm.exe"; Args=""},
     @{Name="Sripts_GlazeWM"; Description="Runs GlazeWM at user login"; Path="$env:USERPROFILE\.glaze-wm\scripts\init.exe"; Args=""},
     @{Name="Throttlestop"; Description="Runs ThrottleStop at user login"; Path="C:\ProgramData\chocolatey\lib\throttlestop\tools\throttlestop\ThrottleStop.exe"; Args=""},
