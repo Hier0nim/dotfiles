@@ -65,7 +65,7 @@ Set-Alias -Name dbui -Value Invoke-NvimDBUI
 function Invoke-Glaze
 {
   sudo "$env:USERPROFILE\AppData\Local\Microsoft\WinGet\Packages\glzr-io.glazewm_Microsoft.Winget.Source_8wekyb3d8bbwe\glazewm.exe"
-  Start-Sleep(5000)
+  Start-Sleep(2)
   & "$env:USERPROFILE\.glaze-wm\scripts\init.exe"
 }
 
