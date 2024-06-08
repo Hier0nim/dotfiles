@@ -114,10 +114,8 @@ nmap <C-s> :w<CR>
 " Debugging
 nmap <Leader>db <Action>(ToggleLineBreakpoint)
 nmap <Leader>de <Action>(EditBreakpoint)
-
-" Running and debugging tests
-nmap <Leader>rt <Action>(RunClass)
-nmap <Leader>dt <Action>(DebugClass)
+nmap <Leader>dc <Action>(ForceRunToCursor)
+nmap <Leader>df <Action>(JumpToStatement)
 
 " Editor content selection
 " nnoremap <C-A> gg<S-v>G
