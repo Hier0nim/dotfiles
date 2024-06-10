@@ -15,6 +15,3 @@ if (Test-Path $scoopPackagesFile)
 {
     Write-Host "Scoop configuration file not found: $scoopPackagesFile" -ForegroundColor Yellow
 }
-
-scoop bucket add CrypticButter https://github.com/CrypticButter/ScoopBucket
-scoop install CrypticButter/buttery-taskbar
