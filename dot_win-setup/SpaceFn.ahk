@@ -15,7 +15,6 @@ for k,v in conf["KEY"] {
     vkKey[GetKeyVK(k)] := v
 }
 
-
 ;SpaceFn
 +Space::
 ^Space::
