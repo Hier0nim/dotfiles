@@ -4,6 +4,7 @@
 ; Map Ctrl to CapsLock 
 CapsLock::Ctrl
 
+/*
 confFilePath := "./conf.ini"
 conf := getConf()
 
