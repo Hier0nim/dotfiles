@@ -274,7 +274,7 @@ $tasks = @(
     @{Name="Throttlestop"; Description="Runs ThrottleStop at user login"; Path="C:\ProgramData\chocolatey\lib\throttlestop\tools\throttlestop\ThrottleStop.exe"; Args=""},
     @{Name="FlowLauncher"; Description="Runs FlowLauncher at user login"; Path="$env:USERPROFILE\AppData\Local\FlowLauncher\Flow.Launcher.exe"; Args=""},
     @{Name="SpaceFn"; Description="Runs SpaceFn at user login"; Path="$env:USERPROFILE\AppData\Local\Programs\AutoHotkey\v2.0.12\AutoHotkey64.exe"; Args="$env:USERPROFILE\.win-setup\SpaceFn.ahk"}
-    @{Name="Kanata"; Description="Runs Kanata at user login"; Path="$env:USERPROFILE\.win-setup\kanata\run-kanata.ps1"; Args=""}
+    @{Name="Kanata"; Description="Runs Kanata at user login"; Path="C:\Program Files\PowerShell\7\pwsh.exe"; Args="$env:USERPROFILE\.win-setup\kanata\run-kanata.ps1"}
 )
 
 foreach ($task in $tasks)
