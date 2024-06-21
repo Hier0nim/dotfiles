@@ -2,7 +2,7 @@
 $env:WT_SESSION = "0"
 
 # Start a new minimized Windows Terminal session with specific arguments
-Start-Process -WindowStyle Minimized -UseNewEnvironment -FilePath "wt.exe" -ArgumentList @(
+Start-Process -WindowStyle Hidden -UseNewEnvironment -FilePath "wt.exe" -ArgumentList @(
     "new-tab"
     "--startingDirectory", "$env:USERPROFILE\.win-setup\kanata"
     "--", "$env:USERPROFILE\.win-setup\kanata\kanata.exe"
