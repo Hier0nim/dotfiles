@@ -1,11 +1,11 @@
 (defcfg process-unmapped-keys yes
 )
 (defsrc
-  1    2    3    4    5    6    7    8    9    0   -   =
-  q    w    e    r    t    y    u    i    o    p
-  a    s    d    f    g    h    j    k    l    ;
-  z    x    c    v    b    n    m
-  spc
+  esc  1    2    3    4    5    6    7    8    9    0    -    =
+  tab  q    w    e    r    t    y    u    i    o    p    [
+  caps a    s    d    f    g    h    j    k    l    ;    '
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rmet cmp  rctl
 )
 (defvar
   tap-time 200
@@ -25,19 +25,20 @@
   )
 )
 (deflayer base
-  1    2    3    4    5    6    7    8    9    0   -   =
-  q    w    e    r    t    y    u    i    o    p
-  @a   @s   @d   @f   g    h    @j   @k   @l   @;
-  z    x    c    v    b    n    m
-  @space
+  esc  1    2    3    4    5    6    7    8    9    0    -    =
+  tab  q    w    e    r    t    y    u    i    o    p    [
+  lctl @a   @s   @d   @f   g    h    @j   @k   @l   @;   '
+  lsft z    x    c    v    b    @n   @m   @,    .    /    rsft
+  lctl lmet lalt           @spc           ralt rmet cmp  rctl
+
 )
 
 (deflayer nomods
-  1    2    3    4    5    6    7    8    9    0   -   =
-  q    w    e    r    t    y    u    i    o    p
-  a    s    d    f    g    h    j    k    l    ;
-  z    x    c    v    b    n    m
-  spc
+  esc  1    2    3    4    5    6    7    8    9    0    -    =
+  tab  q    w    e    r    t    y    u    i    o    p    [
+  caps a    s    d    f    g    h    j    k    l    ;    '
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rmet cmp  rctl
 )
 (deffakekeys
   to-base (layer-switch base)
@@ -54,15 +55,52 @@
   f     (tap-hold-release-keys $tap-time $hold-time (multi f @tap) lsft $left-hand-keys)
   j     (tap-hold-release-keys $tap-time $hold-time (multi j @tap) rsft $right-hand-keys)
   k     (tap-hold-release-keys $tap-time $hold-time (multi k @tap) rctl $right-hand-keys)
-  l     (tap-hold-release-keys $tap-time $hold-time (multi l @tap) ralt $right-hand-keys)
+  l     (tap-hold-release-keys $tap-time $hold-time (multi l @tap) lalt $right-hand-keys)
   ;     (tap-hold-release-keys $tap-time $hold-time (multi ; @tap) rmet $right-hand-keys)
-  space (tap-hold-press $tap-time $hold-time (multi spc @tap) (layer-while-held space_layer))
+  spc   (tap-hold-press $tap-time $hold-time (multi spc @tap) (layer-while-held space_layer))
+  n     (tap-hold-release-keys $tap-time $hold-time (multi n @tap) (layer-while-held num_layer) $right-hand-keys)
+  m     (tap-hold-release-keys $tap-time $hold-time (multi m @tap) (layer-while-held sym_layer) $right-hand-keys)
+  ,     (tap-hold-release-keys $tap-time $hold-time (multi , @tap) (layer-while-held fun_layer) $right-hand-keys)
 )
 
 (deflayer space_layer
-  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10   f11   f12
-  _    _    _    _    _    _    home end  comp p
-  _    _    _    _    _    lft  down up   rght _
-  _    _    _    _    _    bspc del
-  XX
+  _    f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11   f12
+  _    _    _    _    _    _    _    home end  comp p    _
+  _    _    _    _    _    _    lft  down up   rght _    _
+  _    _    _    _    _    _    bspc del  _    _    _    _
+  _    _    _              XX             _    _    _    _
 )
+
+(deflayer num_layer
+  _    _    _    _    _    _    _    _    _    _    _    _     _
+  _    [    7    8    9    ]    _    _    _    _    _    _
+  _    ;    6    5    4    =    _    _    _    _    _    _
+  _    `    1    2    3    \    _    _    _    _    _    _
+  _    _    0              -              _    _    _    _
+)
+
+(deflayer sym_layer
+  _    _    _    _    _    _    _    _    _    _    _    _     _
+  _    S-[  S-7  S-8  S-9  S-]  _    _    _    _    _    _
+  _    S-;  S-6  S-5  S-4  S-=  _    _    _    _    _    _
+  _    S-`  S-1  S-2  S-3  S-\  _    _    _    _    _    _
+  _    S-9  S-0            S--            _    _    _    _
+)
+
+(deflayer fun_layer
+  _    _    _    _    _    _    _    _    _    _    _    _     _
+  _    f12  f7   f8   f9   kprt _    _    _    _    _    _
+  _    f11  f6   f5   f4   _    _    _    _    _    _    _
+  _    f10  f1   f2   f3   _    _    _    _    _    _    _
+  _    _    _              _              _    _    _    _
+)
+
+#|
+(deflayer template
+  _    _    _    _    _    _    _    _    _    _    _    _     _
+  _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _              _              _    _    _    _
+)
+|#

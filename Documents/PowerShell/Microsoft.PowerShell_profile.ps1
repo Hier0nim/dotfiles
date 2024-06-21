@@ -79,20 +79,21 @@ function Invoke-SpaceFn
 Set-Alias -Name spacefn -Value Invoke-SpaceFn
 
 # Helper function for opening the Tortoise SVN GUI from a PowerShell prompt.
-function Svn-Tortoise {
-    param(
-        [Parameter(Mandatory=$false)]
-        [ValidateSet("about", "log", "checkout", "update", "commit", "add", "revert", "cleanup", "merge", "repobrowser", "revisiongraph" )]
-        [string]$Command = "log"
-    )
-<#
+function Svn-Tortoise
+{
+  param(
+    [Parameter(Mandatory=$false)]
+    [ValidateSet("about", "log", "checkout", "update", "commit", "add", "revert", "cleanup", "merge", "repobrowser", "revisiongraph" )]
+    [string]$Command = "log"
+  )
+  <#
   Launches TortoiseSVN with the given command.
   Opens the commit screen if no command is given.
   
   List of supported commands can be found at:
   http://tortoisesvn.net/docs/release/TortoiseSVN_en/tsvn-automation.html
 #>
-    TortoiseProc.exe /command:$Command /path:"$pwd"
+  TortoiseProc.exe /command:$Command /path:"$pwd"
 }
 
 Set-Alias tsvn Svn-Tortoise
