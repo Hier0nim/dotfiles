@@ -8,7 +8,7 @@
   lctl lmet lalt           spc            ralt rmet cmp  rctl
 )
 (defvar
-  tap-time 150
+  tap-time 200
   hold-time 200
 
   left-hand-keys (
