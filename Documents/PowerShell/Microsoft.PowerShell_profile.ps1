@@ -78,22 +78,44 @@ function Invoke-SpaceFn
 
 Set-Alias -Name spacefn -Value Invoke-SpaceFn
 
+
+function Invoke-Kanata
+{
+  # Stop the running process of Kanata
+  $kanataProcess = Get-Process -Name "kanata" -ErrorAction SilentlyContinue
+  if ($kanataProcess) {
+    Stop-Process -Id $kanataProcess.Id -Force
+  }
+
+  # Run the Kanata script
+  sudo "$env:USERPROFILE\.win-setup\Kanata\run-kanata.ps1"
+}
+
+Set-Alias -Name kanata -Value Invoke-Kanata
+
+
+Set-Alias -Name kanata -Value Invoke-Kanata
+
+
 # Helper function for opening the Tortoise SVN GUI from a PowerShell prompt.
 function Svn-Tortoise
 {
   param(
     [Parameter(Mandatory=$false)]
-    [ValidateSet("about", "log", "checkout", "update", "commit", "add", "revert", "cleanup", "merge", "repobrowser", "revisiongraph" )]
-    [string]$Command = "log"
+    [ValidateSet("about", "log", "checkout", "update", "commit", "add", "revert", "cleanup", "merge", "repobrowser", "revisiongraph", "blame")]
+    [string]$Command = "log",
+    
+    [Parameter(Mandatory=$false)]
+    [string]$Path = "$pwd"  # Default to the current directory
   )
   <#
   Launches TortoiseSVN with the given command.
-  Opens the commit screen if no command is given.
+  Opens the log screen if no command is given.
   
   List of supported commands can be found at:
   http://tortoisesvn.net/docs/release/TortoiseSVN_en/tsvn-automation.html
 #>
-  TortoiseProc.exe /command:$Command /path:"$pwd"
+  TortoiseProc.exe /command:$Command /path:$Path
 }
 
 Set-Alias tsvn Svn-Tortoise

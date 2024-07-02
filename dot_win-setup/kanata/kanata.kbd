@@ -8,7 +8,7 @@
   lctl lmet lalt           spc            ralt rmet cmp  rctl
 )
 (defvar
-  tap-time 200
+  tap-time 150
   hold-time 200
 
   left-hand-keys (
@@ -27,7 +27,7 @@
 (deflayer base
   esc  1    2    3    4    5    6    7    8    9    0    -    =
   tab  q    w    e    r    t    y    u    i    o    p    [
-  lctl @a   @s   @d   @f   g    h    @j   @k   @l   @;   '
+  lctl @a   @s   @d   @f   @g   @h   @j   @k   @l   @;   '
   lsft z    x    c    v    b    @n   @m   @,    .    /    rsft
   lctl lmet lalt           @spc           ralt rmet cmp  rctl
 
@@ -53,6 +53,8 @@
   s     (tap-hold-release-keys $tap-time $hold-time (multi s @tap) lalt $left-hand-keys)
   d     (tap-hold-release-keys $tap-time $hold-time (multi d @tap) lctl $left-hand-keys)
   f     (tap-hold-release-keys $tap-time $hold-time (multi f @tap) lsft $left-hand-keys)
+  g     (tap-hold-release-keys $tap-time $hold-time (multi g @tap) ralt $left-hand-keys)
+  h     (tap-hold-release-keys $tap-time $hold-time (multi h @tap) ralt $right-hand-keys)
   j     (tap-hold-release-keys $tap-time $hold-time (multi j @tap) rsft $right-hand-keys)
   k     (tap-hold-release-keys $tap-time $hold-time (multi k @tap) rctl $right-hand-keys)
   l     (tap-hold-release-keys $tap-time $hold-time (multi l @tap) lalt $right-hand-keys)
@@ -65,8 +67,8 @@
 
 (deflayer space_layer
   _    f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11   f12
-  _    _    _    _    _    _    _    home end  comp p    _
-  _    _    _    _    _    _    lft  down up   rght _    _
+  _    _    _    _    _    _    _    home end  cmp  p    _
+  _    lmet lalt lctl lsft _    lft  down up   rght _    _
   _    _    _    _    _    _    bspc del  _    _    _    _
   _    _    _              XX             _    _    _    _
 )
@@ -74,7 +76,7 @@
 (deflayer num_layer
   _    _    _    _    _    _    _    _    _    _    _    _     _
   _    [    7    8    9    ]    _    _    _    _    _    _
-  _    ;    4    5    6    =    _    _    _    _    _    _
+  _    '    4    5    6    =    ralt rsft rctl lalt rmet _
   _    `    1    2    3    \    _    _    _    _    _    _
   _    _    0              -              _    _    _    _
 )
@@ -82,15 +84,15 @@
 (deflayer sym_layer
   _    _    _    _    _    _    _    _    _    _    _    _     _
   _    S-[  S-7  S-8  S-9  S-]  _    _    _    _    _    _
-  _    S-;  S-4  S-5  S-6  S-=  _    _    _    _    _    _
+  _    S-'  S-4  S-5  S-6  S-=  ralt rsft rctl lalt rmet _
   _    S-`  S-1  S-2  S-3  S-\  _    _    _    _    _    _
   _    S-9  S-0            S--            _    _    _    _
 )
 
 (deflayer fun_layer
   _    _    _    _    _    _    _    _    _    _    _    _     _
-  _    f12  f7   f8   f9   _    _    _    _    _    _    _
-  _    f11  f4   f5   f6   _    _    _    _    _    _    _
+  _    f12  f7   f8   f9   caps _    _    _    _    _    _
+  _    f11  f4   f5   f6   _    ralt rsft rctl lalt rmet _
   _    f10  f1   f2   f3   _    _    _    _    _    _    _
   _    _    _              _              _    _    _    _
 )
