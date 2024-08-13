@@ -189,7 +189,7 @@ if ($null -eq (CheckCommand winget))
 }
 
 # Upgrade existing packages
-# winget upgrade --all
+ winget upgrade --all
 
 # ---------------------------------------------------------------------------------------------
 # Install and initialize dotfiles manager
@@ -269,11 +269,9 @@ if ($null -eq (CheckCommand scoop))
 # ---------------------------------------------------------------------------------------------
 
 $tasks = @(
-    @{Name="GlazeWM"; Description="Runs GlazeWM at user login"; Path="$env:USERPROFILE\AppData\Local\Microsoft\WinGet\Packages\glzr-io.glazewm_Microsoft.Winget.Source_8wekyb3d8bbwe\glazewm.exe"; Args=""},
-    @{Name="Sripts_GlazeWM"; Description="Runs GlazeWM at user login"; Path="$env:USERPROFILE\.glaze-wm\scripts\init.exe"; Args=""},
-    @{Name="Throttlestop"; Description="Runs ThrottleStop at user login"; Path="C:\ProgramData\chocolatey\lib\throttlestop\tools\throttlestop\ThrottleStop.exe"; Args=""},
-    @{Name="FlowLauncher"; Description="Runs FlowLauncher at user login"; Path="$env:USERPROFILE\AppData\Local\FlowLauncher\Flow.Launcher.exe"; Args=""},
-    # @{Name="SpaceFn"; Description="Runs SpaceFn at user login"; Path="$env:USERPROFILE\AppData\Local\Programs\AutoHotkey\v2.0.12\AutoHotkey64.exe"; Args="$env:USERPROFILE\.win-setup\SpaceFn.ahk"}
+    @{Name="GlazeWM"; Description="Runs GlazeWM at user login"; Path="C:\Program Files\glzr.io\GlazeWM\glazewm.exe"; Args=""},
+    #@{Name="Sripts_GlazeWM"; Description="Runs GlazeWM at user login"; Path="$env:USERPROFILE\.glaze-wm\scripts\init.exe"; Args=""},
+    #@{Name="Throttlestop"; Description="Runs ThrottleStop at user login"; Path="C:\ProgramData\chocolatey\lib\throttlestop\tools\throttlestop\ThrottleStop.exe"; Args=""},
     @{Name="Kanata"; Description="Runs Kanata at user login"; Path="C:\Program Files\PowerShell\7\pwsh.exe"; Args="$env:USERPROFILE\.win-setup\kanata\run-kanata.ps1"}
 )
 
