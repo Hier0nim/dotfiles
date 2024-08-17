@@ -10,6 +10,7 @@
 function EnsureAndInitializeChezmoi
 {
   EnsureWingetPackage "twpayne.chezmoi"
+  EnsureWingetPackage "Git.Git"
   $chezmoiPath = "$env:USERPROFILE\AppData\Local\Microsoft\WinGet\Links\chezmoi.exe"
   $chezmoiDir = "$env:USERPROFILE\.local\share\chezmoi"
 
