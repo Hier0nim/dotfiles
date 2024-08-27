@@ -83,7 +83,8 @@ function Invoke-Kanata
 {
   # Stop the running process of Kanata
   $kanataProcess = Get-Process -Name "kanata" -ErrorAction SilentlyContinue
-  if ($kanataProcess) {
+  if ($kanataProcess)
+  {
     Stop-Process -Id $kanataProcess.Id -Force
   }
 
@@ -93,8 +94,6 @@ function Invoke-Kanata
 
 Set-Alias -Name kanata -Value Invoke-Kanata
 
-
-Set-Alias -Name kanata -Value Invoke-Kanata
 
 
 # Helper function for opening the Tortoise SVN GUI from a PowerShell prompt.
@@ -119,3 +118,25 @@ function Svn-Tortoise
 }
 
 Set-Alias tsvn Svn-Tortoise
+function Update-SVNAndExit
+{
+  Set-Location -Path (Resolve-Path ../..)
+  svn update
+  exit
+}
+
+Set-Alias usvn Update-SVNAndExit
+
+function Edit-Tnsnames
+{
+  $filePath = "D:\oracle\product\19.0.0\server\network\admin\tnsnames.ora"
+  if (Get-Command nvim -ErrorAction SilentlyContinue)
+  {
+    nvim $filePath
+  } else
+  {
+    notepad $filePath
+  }
+}
+
+Set-Alias etns Edit-Tnsnames

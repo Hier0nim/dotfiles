@@ -41,8 +41,6 @@ set commentary
 " ========================================
 
 " Tab navigation
-nmap <Tab> gt
-nmap <S-Tab> gT
 map <leader>g1 <action>(GoToTab1)
 map <leader>g2 <action>(GoToTab2)
 map <leader>g3 <action>(GoToTab3)
@@ -59,10 +57,10 @@ map <leader>tco <action>(CloseAllEditorsButActive)
 nmap <Leader>v :vsplit<CR>
 nmap <Leader>h :split<CR>
 nmap <C-q> :q<CR>
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+nnoremap <C-j> <C-w>h
+nnoremap <C-k> <C-w>j
+nnoremap <C-l> <C-w>k
+nnoremap <C-;> <C-w>l
 
 " Code navigation
 nmap gd <Action>(GotoDeclaration)
@@ -74,20 +72,21 @@ nmap <C-i> <Action>(Forward)
 nmap <C-o> <Action>(Back)
 
 " NERDTree
-nmap \\ :NERDTreeFocus<CR>
-nmap \| :NERDTreeToggle<CR>
+nmap \ :NERDTreeFocus<CR>
+nmap | :NERDTreeToggle<CR>
 let g:NERDTreeMapCloseDir="h"
 let g:NERDTreeMapActivateNode="o"
 let g:NERDTreeMapQuit='\'
 
 " Access to other windows
 nmap <Leader>fs <Action>(FileStructurePopup)
-nmap <Leader>ff <Action>(SearchEverywhere)
+nmap <Leader>ff <Action>(RecentFiles)
+map <Leader><Leader> <Action>(SearchEverywhere)
 nmap <Leader>fg <Action>(FindInPath)
 nmap <Leader>fr <Action>(RecentFiles)
 nmap <Leader>fc <Action>(RecentChangedFiles)
 nmap <Leader>fl <Action>(RecentLocations)
-nmap <Leader>r :registers<cr>
+" nmap <Leader>r :registers<cr>
 nmap <Leader>wp <Action>(ActivateProblemsViewToolWindow)
 nmap <Leader>wr <Action>(ActivateRunToolWindow)
 nmap <Leader>wg <Action>(ActivateVersionControlToolWindow)
@@ -105,6 +104,7 @@ nmap <Leader>cf <Action>(ReformatCode)
 nmap <Leader>cg <Action>(Generate)
 vmap <Leader>cm <Action>(ExtractMethod)
 nmap <Leader>ce <Action>(ShowErrorDescription)
+nmap <Leader>ca <Action>(Annotate)
 
 " Bookmarks
 map <Leader>b <Action>(ShowBookmarks)
@@ -117,9 +117,6 @@ nmap <Leader>db <Action>(ToggleLineBreakpoint)
 nmap <Leader>de <Action>(EditBreakpoint)
 nmap <Leader>dc <Action>(ForceRunToCursor)
 nmap <Leader>df <Action>(JumpToStatement)
-
-" Editor content selection
-" nnoremap <C-A> gg<S-v>G
 
 " Clear highlight on pressing ESC
 nnoremap <esc> :noh<return><esc>
@@ -152,7 +149,6 @@ map <Leader>rb <Action>(build)
 map <Leader>rc <Action>(RiderDebuggerApplyEncChagnes)
 
 " Find
-nmap <Leader>ff <Action>(SearchEverywhere)
 nmap <Leader>fg <Action>(FindInPath)
 
 " Inspect Code
@@ -167,6 +163,14 @@ map <Leader>td <Action>(ToggleDistractionFreeMode)
 map <leader>tv <Action>(ToggleFullScreen)
 map <leader>ti <Action>(EditorToggleShowIndentLines)
 
-" General purpose popups
-map <Leader>pp <Action>(ToolWindowsGroup)
+map <Leader>tt <Action>(ToolWindowsGroup)
 map <Leader>ge <Action>(EditorPopupMenu)
+map <leader>ti <Action>(EditorToggleShowIndentLines)
+
+" replace currently selected text with default register
+" without yanking it
+vnoremap <leader>p "_dP
+
+" delete without yanking
+nnoremap <leader>x "_d
+vnoremap <leader>x "_d
